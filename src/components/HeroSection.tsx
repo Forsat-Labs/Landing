@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Bitcoin, LineChart, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -26,7 +25,10 @@ const HeroSection: React.FC = () => {
               <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold px-8 py-6 text-lg">
                 Launch App
               </Button>
-              <Button variant="outline" className="border-white/20 hover:bg-bitcoin hover:border-bitcoin text-black dark:text-white hover:text-white font-semibold px-8 py-6 text-lg bg-white">
+              <Button 
+                variant="outline" 
+                className="border-white/20 hover:bg-forsat-orange hover:border-forsat-orange text-black dark:text-white hover:text-white font-semibold px-8 py-6 text-lg bg-white"
+              >
                 Learn More
               </Button>
             </div>
