@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
               <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold px-8 py-6 text-lg">
                 Launch App
               </Button>
-              <Button variant="outline" className="border-white/20 hover:border-white text-white font-semibold px-8 py-6 text-lg">
+              <Button variant="outline" className="border-white/20 hover:bg-bitcoin hover:border-bitcoin text-black dark:text-white hover:text-white font-semibold px-8 py-6 text-lg bg-white">
                 Learn More
               </Button>
             </div>
