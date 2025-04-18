@@ -44,7 +44,7 @@ const CallToAction: React.FC = () => {
             <div className="text-sm text-gray-400">Bitcoin Native</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-bitcoin">80%</div>
+            <div className="text-3xl font-bold text-bitcoin">50%</div>
             <div className="text-sm text-gray-400">Fees to $FOR Holders</div>
           </div>
           <div className="text-center">

@@ -12,7 +12,7 @@ const features = [
   },
   {
     title: "$FOR: The Utility Token",
-    description: "Represents ownership in Forsat with 80% of all fees distributed to $FOR holders, rewarding users who stake their belief in the platform.",
+    description: "Represents ownership in Forsat with 50% of all fees distributed to $FOR holders, rewarding users who stake their belief in the platform.",
     icon: Coins,
     color: "text-forsat-blue"
   },
