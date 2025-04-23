@@ -1,10 +1,14 @@
 import React from 'react';
 import { Bitcoin, LineChart, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import FloatingMarkets from '@/components/FloatingMarkets';
 
 const HeroSection: React.FC = () => {
   return (
     <div className="relative overflow-hidden bg-forsat-dark text-white">
+      {/* Animated Background Elements */}
+      <FloatingMarkets />
+      
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-bitcoin/20 rounded-full filter blur-3xl"></div>
