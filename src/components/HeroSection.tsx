@@ -111,7 +111,7 @@ const HeroSection: React.FC = () => {
           </div>
           
           <div className={`relative transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="relative overflow-hidden rounded-xl shadow-2xl hover:-translate-y-2 transition-transform duration-500">
+            <div className="relative overflow-hidden rounded-xl shadow-2xl animate-float hover:-translate-y-2 transition-transform duration-500">
               <div className="glass-card p-6 border-forsat-orange/20">
                 <div className="absolute -top-24 -right-24 w-48 h-48 bg-forsat-orange/10 rounded-full blur-2xl"></div>
                 <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-forsat-pink/10 rounded-full blur-2xl"></div>
@@ -121,7 +121,7 @@ const HeroSection: React.FC = () => {
                     ACTIVE MARKET
                   </div>
                   <div className="text-sm text-gray-400 font-mono">
-                    <span className="text-bitcoin">0.1 BTC</span> Total Volume
+                    <span className="text-bitcoin">11 BTC</span> Total Volume
                   </div>
                 </div>
                 

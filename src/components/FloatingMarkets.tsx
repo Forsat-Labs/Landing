@@ -32,7 +32,7 @@ const marketData: FloatingMarket[] = [
       left: '8%', 
       top: '25%', 
       delay: 0, 
-      duration: 25, // Adjusted for faster animation
+      duration: 25, 
       scale: 0.5, 
       rotation: -5 
     }
@@ -47,7 +47,7 @@ const marketData: FloatingMarket[] = [
       left: '75%', 
       top: '10%', 
       delay: 2, 
-      duration: 28, // Adjusted for faster animation
+      duration: 28, 
       scale: 0.45, 
       rotation: 8 
     }
@@ -62,7 +62,7 @@ const marketData: FloatingMarket[] = [
       left: '5%', 
       top: '70%', 
       delay: 3.5, 
-      duration: 26, // Adjusted for faster animation
+      duration: 26, 
       scale: 0.4, 
       rotation: -10 
     }
@@ -77,7 +77,7 @@ const marketData: FloatingMarket[] = [
       left: '80%', 
       top: '65%', 
       delay: 1.5, 
-      duration: 30, // Adjusted for faster animation
+      duration: 30, 
       scale: 0.5, 
       rotation: 6 
     }
@@ -92,7 +92,7 @@ const marketData: FloatingMarket[] = [
       left: '60%', 
       top: '85%', 
       delay: 4, 
-      duration: 32, // Adjusted for faster animation
+      duration: 32, 
       scale: 0.4, 
       rotation: -4 
     }
@@ -117,7 +117,7 @@ const FloatingMarkets: React.FC = () => {
       {marketData.map((market) => (
         <div
           key={market.id}
-          className={`absolute glass-morphism rounded-xl shadow-xl transform transition-opacity duration-1000 ${
+          className={`absolute glass-morphism rounded-xl shadow-xl transform transition-opacity duration-1000 animate-float ${
             isVisible ? 'opacity-20' : 'opacity-0'
           }`}
           style={{
