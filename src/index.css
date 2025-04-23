@@ -59,6 +59,7 @@
   
   body {
     @apply bg-forsat-black text-white font-sans antialiased;
+    overflow-x: hidden;
   }
 
   .font-mono {
@@ -74,9 +75,25 @@
   .forsat-gradient {
     @apply bg-gradient-to-r from-forsat-pink via-forsat-orange to-forsat-orange-light;
   }
-
+  
   .glass-morphism {
     @apply backdrop-blur-xl bg-white/5 border border-white/10;
+  }
+  
+  .glass-card {
+    @apply backdrop-blur-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all duration-300 rounded-2xl shadow-lg;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 15px rgba(247, 147, 26, 0.5);
+  }
+  
+  .btn-glow {
+    box-shadow: 0 0 15px rgba(247, 147, 26, 0.3);
   }
 }
 
@@ -101,6 +118,47 @@
   }
 }
 
+/* Particle grid animation */
+@keyframes grid-float {
+  0%, 100% {
+    transform: translateY(-5px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(5px);
+    opacity: 0.6;
+  }
+}
+
+/* Smooth scroll animation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reveal animations */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
 /* Add line-clamp utility for text truncation */
 .line-clamp-2 {
   display: -webkit-box;
@@ -114,4 +172,45 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Modern button hover effects */
+.btn-hover-slide {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-hover-slide:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: -1;
+  transition: height 0.3s ease-in-out;
+}
+
+.btn-hover-slide:hover:after {
+  height: 100%;
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(247, 147, 26, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(247, 147, 26, 0.6);
 }

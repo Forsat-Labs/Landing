@@ -1,66 +1,122 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { Bitcoin, LineChart, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FloatingMarkets from '@/components/FloatingMarkets';
 
-const HeroSection: React.FC = () => {
+// Create animated background particle grid component
+const ParticleGrid = () => {
+  const particles = Array.from({ length: 30 });
+  
   return (
-    <div className="relative overflow-hidden bg-forsat-dark text-white">
+    <div className="absolute inset-0 overflow-hidden z-0 pointer-events-none">
+      {particles.map((_, index) => {
+        const size = Math.random() * 6 + 2; // 2-8px
+        const top = Math.random() * 100;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 5;
+        
+        return (
+          <div 
+            key={index}
+            className="absolute rounded-full bg-forsat-orange/20"
+            style={{
+              width: `${size}px`,
+              height: `${size}px`,
+              top: `${top}%`,
+              left: `${left}%`,
+              animation: `grid-float 3s ease-in-out infinite ${delay}s`
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+const HeroSection: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    setIsVisible(true);
+    
+    // Set up intersection observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.reveal-right, .reveal-left, .reveal-up')
+      .forEach(el => observer.observe(el));
+      
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="relative overflow-hidden bg-forsat-black text-white">
       {/* Animated Background Elements */}
       <FloatingMarkets />
+      <ParticleGrid />
       
       {/* Decorative Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-bitcoin/20 rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-80 h-80 bg-forsat-blue/20 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-60 right-40 w-40 h-40 bg-forsat-pink/20 rounded-full filter blur-3xl"></div>
       </div>
       
-      <div className="container relative z-10 px-4 py-16 mx-auto sm:px-6 lg:py-24 lg:px-8">
+      <div className="container relative z-10 px-4 py-24 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-8 items-center">
-          <div>
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-6">
-              <span className="block">Stake Your</span>
+          <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-8">
+              <span className="block text-glow">Stake Your</span>
               <span className="gradient-text">Belief on Bitcoin</span>
             </h1>
-            <p className="max-w-3xl mt-6 text-xl text-gray-300">
+            <p className="max-w-3xl mt-6 text-xl leading-relaxed text-gray-300">
               Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards — all secured by Bitcoin mainnet.
             </p>
             <div className="flex flex-wrap gap-4 mt-10">
-              <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold px-8 py-6 text-lg">
+              <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide">
                 Launch App
               </Button>
               <Button 
                 variant="outline" 
-                className="border-white/20 hover:bg-forsat-orange hover:border-forsat-orange text-black dark:text-white hover:text-white font-semibold px-8 py-6 text-lg bg-white"
+                className="border-white/20 hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide"
               >
                 Learn More
               </Button>
             </div>
             
             <div className="grid grid-cols-2 gap-6 mt-12">
-              <div className="flex items-center space-x-2">
-                <Bitcoin className="w-6 h-6 text-bitcoin" />
+              <div className="flex items-center space-x-2 group hover-lift">
+                <Bitcoin className="w-6 h-6 text-bitcoin group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-medium">Bitcoin Native</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Lock className="w-6 h-6 text-bitcoin" />
+              <div className="flex items-center space-x-2 group hover-lift">
+                <Lock className="w-6 h-6 text-bitcoin group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-medium">Non-Custodial</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <LineChart className="w-6 h-6 text-bitcoin" />
+              <div className="flex items-center space-x-2 group hover-lift">
+                <LineChart className="w-6 h-6 text-bitcoin group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-medium">Market Creation</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Zap className="w-6 h-6 text-bitcoin" />
+              <div className="flex items-center space-x-2 group hover-lift">
+                <Zap className="w-6 h-6 text-bitcoin group-hover:scale-110 transition-transform" />
                 <span className="text-sm font-medium">$FOR Rewards</span>
               </div>
             </div>
           </div>
           
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl animate-float">
-              <div className="bg-gradient-to-br from-black to-forsat-dark p-4 border border-white/10 rounded-xl">
-                <div className="flex items-center justify-between mb-4">
+          <div className={`relative transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
+            <div className="relative overflow-hidden rounded-xl shadow-2xl animate-float hover:-translate-y-2 transition-transform duration-500">
+              <div className="glass-card p-6 border-forsat-orange/20">
+                <div className="absolute -top-24 -right-24 w-48 h-48 bg-forsat-orange/10 rounded-full blur-2xl"></div>
+                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-forsat-pink/10 rounded-full blur-2xl"></div>
+                
+                <div className="flex items-center justify-between mb-4 relative">
                   <div className="px-3 py-1 text-xs font-semibold bg-bitcoin/10 text-bitcoin rounded-full">
                     ACTIVE MARKET
                   </div>
@@ -82,15 +138,15 @@ const HeroSection: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="w-full h-3 bg-gray-800 rounded-full mb-8">
+                <div className="w-full h-3 bg-gray-800 rounded-full mb-8 overflow-hidden">
                   <div className="h-3 bg-gradient-to-r from-green-500 to-green-400 rounded-full" style={{ width: '64%' }}></div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">
-                  <Button className="w-full bg-green-500 hover:bg-green-600 text-white">
+                  <Button className="w-full bg-green-500 hover:bg-green-600 text-white btn-hover-slide">
                     Buy YES
                   </Button>
-                  <Button className="w-full bg-red-500 hover:bg-red-600 text-white">
+                  <Button className="w-full bg-red-500 hover:bg-red-600 text-white btn-hover-slide">
                     Buy NO
                   </Button>
                 </div>
@@ -98,8 +154,8 @@ const HeroSection: React.FC = () => {
             </div>
             
             {/* Small decorative element */}
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-lg bg-bitcoin rotate-12 opacity-80"></div>
-            <div className="absolute -top-6 -right-6 w-16 h-16 rounded-lg bg-forsat-blue -rotate-12 opacity-80"></div>
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-lg bg-bitcoin rotate-12 opacity-80 animate-pulse-slow"></div>
+            <div className="absolute -top-6 -right-6 w-16 h-16 rounded-lg bg-forsat-pink -rotate-12 opacity-80 animate-pulse-slow delay-1000"></div>
           </div>
         </div>
       </div>
