@@ -1,2 +1,90 @@
 
-/* This file is intentionally left empty as we're using Tailwind CSS for styling */
+/* This file contains additional styles to enhance our modern UI approach */
+
+/* 3D Card Effect */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: all 0.3s ease;
+}
+
+.card-3d:hover {
+  transform: rotateX(5deg) rotateY(5deg);
+}
+
+/* Improved button hover effects */
+.button-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-glow:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s ease-out;
+}
+
+.button-glow:hover:before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Improved text highlight effect */
+.text-highlight-animation {
+  background-size: 100% 0%;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+  background-image: linear-gradient(transparent 60%, rgba(247, 147, 26, 0.2) 40%);
+}
+
+.text-highlight-animation:hover {
+  background-size: 100% 100%;
+}
+
+/* Modern ticker animation for stats */
+@keyframes ticker {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}
+
+.ticker-animation {
+  animation: ticker 3s ease-in-out infinite;
+}
+
+/* Smoother page transitions */
+.page-transition {
+  animation: pageIn 0.4s ease-out forwards;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

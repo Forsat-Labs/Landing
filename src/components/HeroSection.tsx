@@ -84,7 +84,7 @@ const HeroSection: React.FC = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-white/20 hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide"
+                className="border-white/20 bg-transparent hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide"
               >
                 Learn More
               </Button>

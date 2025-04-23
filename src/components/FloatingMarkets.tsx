@@ -20,7 +20,7 @@ interface FloatingMarket {
   };
 }
 
-// Sample market data
+// Sample market data with improved positioning to avoid text overlap
 const marketData: FloatingMarket[] = [
   {
     id: 1,
@@ -29,11 +29,11 @@ const marketData: FloatingMarket[] = [
     volume: "0.35",
     category: "Crypto",
     position: { 
-      left: '15%', 
-      top: '20%', 
+      left: '8%', 
+      top: '25%', 
       delay: 0, 
-      duration: 25, 
-      scale: 0.6, 
+      duration: 45, // Increased duration for slower animation
+      scale: 0.5, 
       rotation: -5 
     }
   },
@@ -44,11 +44,11 @@ const marketData: FloatingMarket[] = [
     volume: "1.2",
     category: "Politics",
     position: { 
-      left: '70%', 
-      top: '15%', 
+      left: '75%', 
+      top: '10%', 
       delay: 2, 
-      duration: 28, 
-      scale: 0.5, 
+      duration: 50, // Increased duration for slower animation
+      scale: 0.45, 
       rotation: 8 
     }
   },
@@ -59,11 +59,11 @@ const marketData: FloatingMarket[] = [
     volume: "0.8",
     category: "Crypto",
     position: { 
-      left: '10%', 
-      top: '60%', 
+      left: '5%', 
+      top: '70%', 
       delay: 3.5, 
-      duration: 30, 
-      scale: 0.45, 
+      duration: 48, // Increased duration for slower animation
+      scale: 0.4, 
       rotation: -10 
     }
   },
@@ -74,11 +74,11 @@ const marketData: FloatingMarket[] = [
     volume: "0.45",
     category: "Stocks",
     position: { 
-      left: '75%', 
-      top: '60%', 
+      left: '80%', 
+      top: '65%', 
       delay: 1.5, 
-      duration: 26, 
-      scale: 0.55, 
+      duration: 52, // Increased duration for slower animation
+      scale: 0.5, 
       rotation: 6 
     }
   },
@@ -89,10 +89,10 @@ const marketData: FloatingMarket[] = [
     volume: "0.65",
     category: "Commodities",
     position: { 
-      left: '45%', 
-      top: '75%', 
+      left: '60%', 
+      top: '85%', 
       delay: 4, 
-      duration: 32, 
+      duration: 55, // Increased duration for slower animation
       scale: 0.4, 
       rotation: -4 
     }
@@ -118,13 +118,13 @@ const FloatingMarkets: React.FC = () => {
         <div
           key={market.id}
           className={`absolute glass-morphism rounded-xl shadow-xl transform transition-opacity duration-1000 ${
-            isVisible ? 'opacity-30' : 'opacity-0'
+            isVisible ? 'opacity-20' : 'opacity-0'
           }`}
           style={{
             left: market.position.left,
             top: market.position.top,
             transform: `scale(${market.position.scale}) rotate(${market.position.rotation}deg)`,
-            animation: `float ${market.position.duration}s ease-in-out infinite ${market.position.delay}s`,
+            animation: `gentle-float ${market.position.duration}s ease-in-out infinite ${market.position.delay}s`,
             width: '280px',
           }}
         >
