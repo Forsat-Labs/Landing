@@ -88,3 +88,27 @@
     transform: translateY(0);
   }
 }
+
+/* Add subtle animation for main market card */
+.animate-float {
+  animation: gentle-market-float 8s ease-in-out infinite;
+}
+
+@keyframes gentle-market-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Improve gentle float animation for background elements */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotation, 0deg));
+  }
+  50% {
+    transform: translateY(-15px) rotate(var(--rotation, 0deg));
+  }
+}

@@ -84,7 +84,7 @@ const HeroSection: React.FC = () => {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-white/20 bg-transparent hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide"
+                className="border-white/20 bg-white/5 hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide"
               >
                 Learn More
               </Button>
@@ -111,7 +111,7 @@ const HeroSection: React.FC = () => {
           </div>
           
           <div className={`relative transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0 translate-y-10'}`}>
-            <div className="relative overflow-hidden rounded-xl shadow-2xl animate-float hover:-translate-y-2 transition-transform duration-500">
+            <div className="relative overflow-hidden rounded-xl shadow-2xl hover:-translate-y-2 transition-transform duration-500">
               <div className="glass-card p-6 border-forsat-orange/20">
                 <div className="absolute -top-24 -right-24 w-48 h-48 bg-forsat-orange/10 rounded-full blur-2xl"></div>
                 <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-forsat-pink/10 rounded-full blur-2xl"></div>
@@ -130,11 +130,11 @@ const HeroSection: React.FC = () => {
                 <div className="flex justify-between mb-4">
                   <div className="flex flex-col">
                     <span className="text-sm text-gray-400">YES Price</span>
-                    <span className="text-2xl font-bold text-green-500 font-mono">64%</span>
+                    <span className="text-2xl font-bold text-green-500 font-mono">$0.64</span>
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm text-gray-400">NO Price</span>
-                    <span className="text-2xl font-bold text-red-500 font-mono">36%</span>
+                    <span className="text-2xl font-bold text-red-500 font-mono">$0.36</span>
                   </div>
                 </div>
                 

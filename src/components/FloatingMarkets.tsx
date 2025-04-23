@@ -32,7 +32,7 @@ const marketData: FloatingMarket[] = [
       left: '8%', 
       top: '25%', 
       delay: 0, 
-      duration: 45, // Increased duration for slower animation
+      duration: 25, // Adjusted for faster animation
       scale: 0.5, 
       rotation: -5 
     }
@@ -47,7 +47,7 @@ const marketData: FloatingMarket[] = [
       left: '75%', 
       top: '10%', 
       delay: 2, 
-      duration: 50, // Increased duration for slower animation
+      duration: 28, // Adjusted for faster animation
       scale: 0.45, 
       rotation: 8 
     }
@@ -62,7 +62,7 @@ const marketData: FloatingMarket[] = [
       left: '5%', 
       top: '70%', 
       delay: 3.5, 
-      duration: 48, // Increased duration for slower animation
+      duration: 26, // Adjusted for faster animation
       scale: 0.4, 
       rotation: -10 
     }
@@ -77,7 +77,7 @@ const marketData: FloatingMarket[] = [
       left: '80%', 
       top: '65%', 
       delay: 1.5, 
-      duration: 52, // Increased duration for slower animation
+      duration: 30, // Adjusted for faster animation
       scale: 0.5, 
       rotation: 6 
     }
@@ -92,7 +92,7 @@ const marketData: FloatingMarket[] = [
       left: '60%', 
       top: '85%', 
       delay: 4, 
-      duration: 55, // Increased duration for slower animation
+      duration: 32, // Adjusted for faster animation
       scale: 0.4, 
       rotation: -4 
     }
@@ -144,7 +144,7 @@ const FloatingMarkets: React.FC = () => {
             <div className="flex items-center justify-between text-xs">
               <span className="text-white/70">YES</span>
               <span className={market.yesPercentage > 50 ? 'text-green-500' : 'text-red-500'}>
-                {market.yesPercentage}%
+                ${(market.yesPercentage / 100).toFixed(2)}
               </span>
             </div>
             <div className="w-full h-1.5 bg-gray-800 rounded-full mt-1">
