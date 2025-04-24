@@ -117,7 +117,7 @@ const FloatingMarkets: React.FC = () => {
       {marketData.map((market) => (
         <div
           key={market.id}
-          className={`absolute glass-morphism rounded-xl shadow-xl transform transition-opacity duration-1000 ${
+          className={`absolute glass-morphism rounded-xl shadow-xl ${
             isVisible ? 'opacity-20' : 'opacity-0'
           }`}
           style={{
