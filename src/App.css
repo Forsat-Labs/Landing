@@ -94,6 +94,11 @@
   animation: gentle-market-float 8s ease-in-out infinite;
 }
 
+/* Specific slower float animation for the market card */
+.market-card-float {
+  animation: gentle-market-float 12s ease-in-out infinite;
+}
+
 @keyframes gentle-market-float {
   0%, 100% {
     transform: translateY(0);
@@ -178,4 +183,140 @@
 .micro-interaction:hover {
   transform: translateY(-2px);
   filter: brightness(1.05);
+}
+
+/* Custom Cursor Styles */
+body {
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(247, 147, 26, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform-origin: center;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out;
+  z-index: 9999;
+  mix-blend-mode: exclusion;
+  margin-left: -15px;
+  margin-top: -15px;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background-color: #f7931a;
+  border-radius: 50%;
+  pointer-events: none;
+  transform-origin: center;
+  transition: transform 0.1s ease-out, opacity 0.1s ease-out, width 0.1s ease-out, height 0.1s ease-out;
+  z-index: 9999;
+  margin-left: -3px;
+  margin-top: -3px;
+}
+
+.cursor-clicked {
+  border-color: rgba(247, 147, 26, 0.8);
+  transform: scale(0.8) !important;
+}
+
+.cursor-dot-clicked {
+  background-color: white;
+  transform: scale(0.5) !important;
+}
+
+.cursor-hovering {
+  width: 50px !important;
+  height: 50px !important;
+  margin-left: -25px;
+  margin-top: -25px;
+  background-color: rgba(247, 147, 26, 0.1);
+  border-width: 1px;
+}
+
+.cursor-dot-hovering {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+/* Scroll-triggered animations */
+.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3D Transform Hover Effect */
+.transform-3d-hover {
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.transform-3d-hover:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(10deg) scale(1.05);
+}
+
+/* Page transition animation */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease-in, transform 0.4s ease-in;
+}
+
+/* Loading Layer Animation */
+.loading-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #0b0a09;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s ease-out;
+}
+
+.loading-layer.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-logo {
+  animation: loading-logo-pulse 2s ease-in-out infinite;
+}
+
+@keyframes loading-logo-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
 }

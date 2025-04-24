@@ -1,0 +1,10 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <linearGradient id="forsat-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#ea4568" />
+    <stop offset="50%" style="stop-color:#f7931a" />
+    <stop offset="100%" style="stop-color:#f4b455" />
+  </linearGradient>
+  <path fill="url(#forsat-gradient)" d="M60 10c27.6 0 50 22.4 50 50s-22.4 50-50 50-50-22.4-50-50 22.4-50 50-50z"/>
+  <path fill="#FFF" d="M45 44v32h10V64h15v-8H55V44H45zm30 0v32h10V44H75z"/>
+</svg>

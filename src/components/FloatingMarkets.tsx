@@ -117,7 +117,7 @@ const FloatingMarkets: React.FC = () => {
       {marketData.map((market) => (
         <div
           key={market.id}
-          className={`absolute glass-morphism rounded-xl shadow-xl transform transition-opacity duration-1000 animate-float ${
+          className={`absolute glass-morphism rounded-xl shadow-xl transform transition-opacity duration-1000 ${
             isVisible ? 'opacity-20' : 'opacity-0'
           }`}
           style={{
@@ -126,7 +126,8 @@ const FloatingMarkets: React.FC = () => {
             transform: `scale(${market.position.scale}) rotate(${market.position.rotation}deg)`,
             animation: `gentle-float ${market.position.duration}s ease-in-out infinite ${market.position.delay}s`,
             width: '280px',
-          }}
+            '--rotation': `${market.position.rotation}deg`,
+          } as React.CSSProperties}
         >
           <Card className="border border-white/10 bg-forsat-black/30 backdrop-blur-md p-3">
             <div className="flex items-center justify-between mb-2">
