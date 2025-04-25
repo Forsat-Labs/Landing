@@ -218,12 +218,10 @@ const HeroSection: React.FC = () => {
                 className="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
               />
               <div className="glass-card p-6 border-forsat-orange/20 relative z-10">
-                <div className="absolute -top-24 -right-24 w-48 h-48 bg-forsat-orange/10 rounded-full blur-2xl"></div>
-                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-forsat-pink/10 rounded-full blur-2xl"></div>
-                
                 <div className="flex items-center justify-between mb-4 relative">
-                  <div className="px-3 py-1 text-xs font-semibold bg-bitcoin/10 text-bitcoin rounded-full">
-                    ACTIVE MARKET
+                  <div className="px-3 py-1 text-xs font-semibold bg-bitcoin/10 text-bitcoin rounded-full flex items-center gap-2">
+                    <Bitcoin className="h-4 w-4 text-bitcoin" />
+                    CRYPTO
                   </div>
                   <div className="text-sm text-gray-400 font-mono">
                     <span className="text-bitcoin">11 BTC</span> Total Volume
@@ -264,7 +262,7 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Markets Section - Now positioned below the hero content */}
+        {/* Floating Markets Section */}
         <div className="mt-16">
           <FloatingMarkets />
         </div>
