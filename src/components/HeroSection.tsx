@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Bitcoin, LineChart, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -137,7 +136,6 @@ const HeroSection: React.FC = () => {
       <CustomCursor />
       
       {/* Animated Background Elements */}
-      <FloatingMarkets />
       <ParticleGrid />
       
       {/* 3D Video Background */}
@@ -214,7 +212,12 @@ const HeroSection: React.FC = () => {
             style={{ transform: `translateY(${scrollY * 0.05}px)` }}
           >
             <div className="relative overflow-hidden rounded-xl shadow-2xl transition-transform duration-500 hover:-translate-y-2 market-card-float card-3d premium-shadow">
-              <div className="glass-card p-6 border-forsat-orange/20">
+              <img 
+                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+                alt="Trading Platform" 
+                className="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
+              />
+              <div className="glass-card p-6 border-forsat-orange/20 relative z-10">
                 <div className="absolute -top-24 -right-24 w-48 h-48 bg-forsat-orange/10 rounded-full blur-2xl"></div>
                 <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-forsat-pink/10 rounded-full blur-2xl"></div>
                 
@@ -255,10 +258,15 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
             
-            {/* Small decorative element */}
+            {/* Small decorative elements */}
             <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-lg bg-bitcoin rotate-12 opacity-80 animate-pulse-slow"></div>
             <div className="absolute -top-6 -right-6 w-16 h-16 rounded-lg bg-forsat-pink -rotate-12 opacity-80 animate-pulse-slow delay-1000"></div>
           </div>
+        </div>
+
+        {/* Floating Markets Section - Now positioned below the hero content */}
+        <div className="mt-16">
+          <FloatingMarkets />
         </div>
       </div>
     </div>
