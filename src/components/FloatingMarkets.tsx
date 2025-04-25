@@ -26,11 +26,11 @@ interface FloatingMarket {
 const marketData: FloatingMarket[] = [
   {
     id: 1,
-    question: "Will BTC reach $150K by Q3 2025?",
+    question: "Will Gold hit $4000 before June?",
     yesPrice: 0.72,
     noPrice: 0.28,
     volume: "4.2",
-    category: "Crypto",
+    category: "Commodities",
     icon: <TrendingUp className="h-5 w-5 text-forsat-orange" />
   },
   {
