@@ -1,4 +1,3 @@
-
 /* This file contains additional styles to enhance our modern UI approach */
 
 /* 3D Card Effect */
@@ -337,4 +336,8 @@ body {
 
 .delay-1000 {
   animation-delay: 1s;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
 }
