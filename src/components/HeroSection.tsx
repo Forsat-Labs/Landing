@@ -1,7 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import { Bitcoin, LineChart, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FloatingMarkets from '@/components/FloatingMarkets';
+import { GlassCard } from '@/components/ui/glassmorphism';
 
 // Create animated background particle grid component
 const ParticleGrid = () => {
@@ -101,6 +103,8 @@ const CustomCursor = () => {
 const HeroSection: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [percentChange, setPercentChange] = useState(4.8);
+  const [volumeValue, setVolumeValue] = useState("11");
   
   useEffect(() => {
     setIsVisible(true);
@@ -124,9 +128,25 @@ const HeroSection: React.FC = () => {
     document.querySelectorAll('.reveal-right, .reveal-left, .reveal-up')
       .forEach(el => observer.observe(el));
       
+    // Animate volume and percentage change
+    const animationInterval = setInterval(() => {
+      setVolumeValue(prev => {
+        const current = parseFloat(prev);
+        return (current + (Math.random() * 0.2)).toFixed(1);
+      });
+      
+      setPercentChange(prev => {
+        let change = prev + (Math.random() * 0.4) * (Math.random() > 0.5 ? 1 : -1);
+        if (change > 8) change = 7.5;
+        if (change < 0) change = 0.8;
+        return change;
+      });
+    }, 3500);
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
+      clearInterval(animationInterval);
     };
   }, []);
 
@@ -224,7 +244,7 @@ const HeroSection: React.FC = () => {
                     CRYPTO
                   </div>
                   <div className="text-sm text-gray-400 font-mono">
-                    <span className="text-bitcoin">11 BTC</span> Total Volume
+                    <span className="text-bitcoin ticker-animation">{volumeValue} BTC</span> Vol.
                   </div>
                 </div>
                 
@@ -241,8 +261,19 @@ const HeroSection: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="w-full h-3 bg-gray-800 rounded-full mb-8 overflow-hidden">
+                <div className="w-full h-3 bg-gray-800 rounded-full mb-4 overflow-hidden">
                   <div className="h-3 bg-gradient-to-r from-green-500 to-green-400 rounded-full" style={{ width: '64%' }}></div>
+                </div>
+                
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center text-green-500">
+                    <Bitcoin className="h-4 w-4 mr-1" />
+                    <span className="text-sm font-semibold">{percentChange.toFixed(1)}%</span>
+                    <span className="text-xs ml-1 text-gray-400">24h</span>
+                  </div>
+                  <div className="text-xs text-gray-400">
+                    Last: <span className="text-white">$0.63</span>
+                  </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4">

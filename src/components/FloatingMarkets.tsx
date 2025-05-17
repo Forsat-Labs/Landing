@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
-import { Bitcoin, ArrowLeft, ArrowRight, TrendingUp, Flag, ChartBar } from 'lucide-react';
+import { Bitcoin, ArrowLeft, ArrowRight, TrendingUp, Flag, ChartBar, ArrowUp, ArrowDown } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { GlassCard } from '@/components/ui/glassmorphism';
 import { cn } from "@/lib/utils";
 
 // Update market data types
@@ -20,6 +21,8 @@ interface FloatingMarket {
   volume: string;
   category: string;
   icon: React.ReactNode;
+  percentChange: number;
+  volumeTrend: 'up' | 'down' | 'stable';
 }
 
 // Enhanced market data with more details
@@ -31,7 +34,9 @@ const marketData: FloatingMarket[] = [
     noPrice: 0.28,
     volume: "4.2",
     category: "Commodities",
-    icon: <TrendingUp className="h-5 w-5 text-forsat-orange" />
+    icon: <TrendingUp className="h-5 w-5 text-forsat-orange" />,
+    percentChange: 3.8,
+    volumeTrend: 'up'
   },
   {
     id: 2,
@@ -40,7 +45,9 @@ const marketData: FloatingMarket[] = [
     noPrice: 0.55,
     volume: "3.5",
     category: "Politics",
-    icon: <Flag className="h-5 w-5 text-forsat-orange" />
+    icon: <Flag className="h-5 w-5 text-forsat-orange" />,
+    percentChange: -2.1,
+    volumeTrend: 'down'
   },
   {
     id: 3,
@@ -49,19 +56,43 @@ const marketData: FloatingMarket[] = [
     noPrice: 0.69,
     volume: "3.3",
     category: "Politics",
-    icon: <ChartBar className="h-5 w-5 text-forsat-orange" />
+    icon: <ChartBar className="h-5 w-5 text-forsat-orange" />,
+    percentChange: 1.4,
+    volumeTrend: 'up'
   }
 ];
 
 const FloatingMarkets: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [animatedVolumes, setAnimatedVolumes] = useState<{[key: number]: string}>(
+    marketData.reduce((acc, market) => ({...acc, [market.id]: market.volume}), {})
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
     }, 500);
 
-    return () => clearTimeout(timer);
+    // Animate volume numbers
+    const volumeInterval = setInterval(() => {
+      setAnimatedVolumes(prev => {
+        const newVolumes = {...prev};
+        marketData.forEach(market => {
+          const currentVolume = parseFloat(prev[market.id]);
+          if (market.volumeTrend === 'up') {
+            newVolumes[market.id] = (currentVolume + (Math.random() * 0.05)).toFixed(1);
+          } else if (market.volumeTrend === 'down') {
+            newVolumes[market.id] = Math.max(currentVolume - (Math.random() * 0.03), 0.1).toFixed(1);
+          }
+        });
+        return newVolumes;
+      });
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(volumeInterval);
+    }
   }, []);
 
   return (
@@ -96,9 +127,9 @@ const FloatingMarkets: React.FC = () => {
                       {market.icon}
                       {market.category}
                     </div>
-                    <div className="flex items-center text-xs text-gray-400">
+                    <div className="flex items-center text-xs">
                       <Bitcoin className="h-3 w-3 text-bitcoin mr-1" />
-                      <span>{market.volume} BTC</span>
+                      <span className="text-gray-400 ticker-animation">{animatedVolumes[market.id]} BTC</span>
                     </div>
                   </div>
                   
@@ -115,11 +146,28 @@ const FloatingMarkets: React.FC = () => {
                       <span className="text-red-400">NO</span>
                       <span className="text-red-400">${market.noPrice.toFixed(2)}</span>
                     </div>
-                    <div className="w-full h-1.5 bg-gray-800 rounded-full mt-1">
+                    <div className="w-full h-1.5 bg-gray-800 rounded-full mt-1 mb-2">
                       <div 
                         className="h-1.5 rounded-full bg-gradient-to-r from-forsat-pink to-forsat-orange" 
                         style={{ width: `${market.yesPrice * 100}%` }}
                       ></div>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs">
+                      <span 
+                        className={cn(
+                          "font-semibold flex items-center",
+                          market.percentChange > 0 ? "text-green-400" : "text-red-400"
+                        )}
+                      >
+                        {market.percentChange > 0 ? (
+                          <ArrowUp className="h-3 w-3 mr-0.5" />
+                        ) : (
+                          <ArrowDown className="h-3 w-3 mr-0.5" />
+                        )}
+                        {Math.abs(market.percentChange).toFixed(1)}%
+                      </span>
+                      <span className="text-gray-400">24h Change</span>
                     </div>
                   </div>
                 </Card>
