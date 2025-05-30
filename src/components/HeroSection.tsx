@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bitcoin, LineChart, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import FloatingMarkets from '@/components/FloatingMarkets';
+import Partners from '@/components/Partners';
 import { GlassCard } from '@/components/ui/glassmorphism';
 
 // Create animated background particle grid component
@@ -287,9 +287,9 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Markets Section */}
+        {/* Partners Section */}
         <div className="mt-16">
-          <FloatingMarkets />
+          <Partners />
         </div>
       </div>
     </div>
