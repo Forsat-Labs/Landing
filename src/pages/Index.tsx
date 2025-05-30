@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
@@ -14,7 +13,7 @@ const LoadingScreen = () => {
   return (
     <div className="loading-layer">
       <div className="loading-logo">
-        <img src="/logo.svg" alt="Forsat Logo" width={120} height={120} />
+        <img src="/forsat-logo.svg" alt="Forsat Logo" width={80} height={80} />
       </div>
     </div>
   );

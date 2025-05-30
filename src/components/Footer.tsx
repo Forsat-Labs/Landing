@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Github, Twitter, Globe, ArrowUpRight } from 'lucide-react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
@@ -13,10 +12,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4 reveal-left">
-              <span className="text-3xl font-bold">
-                <span className="text-bitcoin">F</span>
-                <span className="text-glow">orsat</span>
-              </span>
+              <img 
+                src="/forsat-logo.svg" 
+                alt="Forsat - Bitcoin Prediction Markets" 
+                className="h-6 w-auto"
+              />
             </div>
             <p className="text-gray-400 max-w-md reveal-left" style={{ transitionDelay: '100ms' }}>
               The first Bitcoin-native prediction market platform. Stake your belief on Bitcoin mainnet with unparalleled security and transparency.

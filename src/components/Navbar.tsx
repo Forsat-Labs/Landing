@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -56,10 +55,11 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <a href="#" className="flex items-center group">
-            <span className="text-2xl font-bold flex items-center">
-              <span className="text-bitcoin mr-1">F</span>
-              <span className="text-glow group-hover:text-white transition-colors duration-300">orsat</span>
-            </span>
+            <img 
+              src="/forsat-logo.svg" 
+              alt="Forsat - Bitcoin Prediction Markets" 
+              className="h-6 w-auto transition-all duration-300 group-hover:scale-105"
+            />
           </a>
           
           {/* Desktop Navigation */}
