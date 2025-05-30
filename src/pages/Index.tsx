@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
@@ -9,30 +9,8 @@ import Footer from '@/components/Footer';
 import BackgroundCanvas from '@/components/BackgroundCanvas';
 import { ScrollFade } from '@/components/ScrollAnimations';
 
-const LoadingScreen = () => {
-  return (
-    <div className="loading-layer">
-      <div className="loading-logo">
-        <img src="/forsat-logo.svg" alt="Forsat Logo" width={80} height={80} />
-      </div>
-    </div>
-  );
-};
-
 const Index = () => {
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
-    // Simulate loading time for high-end effect
-    const timer = setTimeout(() => {
-      const loader = document.querySelector('.loading-layer');
-      if (loader) loader.classList.add('hidden');
-      
-      setTimeout(() => {
-        setLoading(false);
-      }, 600);
-    }, 800);
-
     // Setup scroll-triggered animations
     const setupScrollAnimations = () => {
       const fadeElements = document.querySelectorAll('.fade-in-scroll');
@@ -50,16 +28,11 @@ const Index = () => {
       });
     };
     
-    if (!loading) {
-      setupScrollAnimations();
-    }
-    
-    return () => clearTimeout(timer);
-  }, [loading]);
+    setupScrollAnimations();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col page-transition">
-      {loading && <LoadingScreen />}
       <BackgroundCanvas />
       <Navbar />
       

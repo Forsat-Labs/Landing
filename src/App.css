@@ -288,38 +288,6 @@ body {
   transition: opacity 0.4s ease-in, transform 0.4s ease-in;
 }
 
-/* Loading Layer Animation */
-.loading-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: #0b0a09;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.6s ease-out;
-}
-
-.loading-layer.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.loading-logo {
-  animation: loading-logo-pulse 2s ease-in-out infinite;
-}
-
-@keyframes loading-logo-pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-}
-
 /* Add animation for pulse-slow elements */
 @keyframes pulse-slow {
   0%, 100% {
