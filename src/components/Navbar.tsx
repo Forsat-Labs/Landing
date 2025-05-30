@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -56,10 +55,11 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <a href="#" className="flex items-center group">
-            <span className="text-2xl font-bold flex items-center">
-              <span className="text-bitcoin mr-1">F</span>
-              <span className="text-glow group-hover:text-white transition-colors duration-300">orsat</span>
-            </span>
+            <img 
+              src="/forsat-logo.svg" 
+              alt="Forsat - Bitcoin Prediction Markets" 
+              className="h-6 w-auto transition-all duration-300 group-hover:scale-105"
+            />
           </a>
           
           {/* Desktop Navigation */}
@@ -89,8 +89,10 @@ const Navbar: React.FC = () => {
               )}
             </div>
             
-            <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white btn-glow btn-hover-slide">
-              Launch App
+            <Button asChild className="bg-bitcoin hover:bg-forsat-orange text-white btn-glow btn-hover-slide">
+              <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
+                Launch App
+              </a>
             </Button>
           </div>
           
@@ -153,10 +155,13 @@ const Navbar: React.FC = () => {
               </div>
               
               <Button 
-                className="bg-bitcoin hover:bg-bitcoin-dark text-white w-full mt-2"
+                asChild
+                className="bg-bitcoin hover:bg-forsat-orange text-white w-full mt-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Launch App
+                <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
+                  Launch App
+                </a>
               </Button>
             </div>
           </div>

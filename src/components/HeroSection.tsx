@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import { Bitcoin, LineChart, Lock, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import FloatingMarkets from '@/components/FloatingMarkets';
+import Partners from '@/components/Partners';
 import { GlassCard } from '@/components/ui/glassmorphism';
 
 // Create animated background particle grid component
@@ -193,17 +192,22 @@ const HeroSection: React.FC = () => {
               <span className="gradient-text">Belief on Bitcoin</span>
             </h1>
             <p className="max-w-3xl mt-6 text-xl leading-relaxed text-gray-300">
-              Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards — all secured by Bitcoin mainnet.
+              Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards - all secured by Bitcoin mainnet.
             </p>
             <div className="flex flex-wrap gap-4 mt-10">
-              <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction">
-                Launch App
+              <Button asChild className="bg-bitcoin hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction">
+                <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
+                  Launch App
+                </a>
               </Button>
               <Button 
+                asChild
                 variant="outline" 
                 className="border-white/20 bg-white/5 hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide micro-interaction"
               >
-                Learn More
+                <a href="#features">
+                  Learn More
+                </a>
               </Button>
             </div>
             
@@ -232,11 +236,6 @@ const HeroSection: React.FC = () => {
             style={{ transform: `translateY(${scrollY * 0.05}px)` }}
           >
             <div className="relative overflow-hidden rounded-xl shadow-2xl transition-transform duration-500 hover:-translate-y-2 market-card-float card-3d premium-shadow">
-              <img 
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
-                alt="Trading Platform" 
-                className="absolute inset-0 w-full h-full object-cover opacity-20 z-0"
-              />
               <div className="glass-card p-6 border-forsat-orange/20 relative z-10">
                 <div className="flex items-center justify-between mb-4 relative">
                   <div className="px-3 py-1 text-xs font-semibold bg-bitcoin/10 text-bitcoin rounded-full flex items-center gap-2">
@@ -293,9 +292,9 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Markets Section */}
+        {/* Partners Section */}
         <div className="mt-16">
-          <FloatingMarkets />
+          <Partners />
         </div>
       </div>
     </div>

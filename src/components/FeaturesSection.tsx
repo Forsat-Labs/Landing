@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Bitcoin, Coins, UserPlus, UsersRound } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,15 +8,15 @@ const features = [
     title: "Bitcoin Mainnet Exclusivity",
     description: "Built exclusively on Bitcoin mainnet using Runes for all assets, ensuring unparalleled security and verifiability without reliance on Layer 2 solutions or bridges.",
     icon: Bitcoin,
-    color: "text-bitcoin",
-    gradient: "from-bitcoin/20 to-bitcoin/5"
+    color: "text-orange-500",
+    gradient: "from-orange-500/20 to-orange-500/5"
   },
   {
     title: "$FOR: The Utility Token",
     description: "Represents ownership in Forsat with 50% of all fees distributed to $FOR holders, rewarding users who stake their belief in the platform.",
     icon: Coins,
-    color: "text-forsat-blue",
-    gradient: "from-forsat-blue/20 to-forsat-blue/5"
+    color: "text-yellow-500",
+    gradient: "from-yellow-500/20 to-yellow-500/5"
   },
   {
     title: "Permissionless Market Creation",
@@ -52,7 +51,7 @@ const FeaturesSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <div id="features" className="py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal-up">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4 premium-text">
@@ -74,9 +73,7 @@ const FeaturesSection: React.FC = () => {
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-20 rounded-lg`}></div>
                 <CardHeader className="pb-2 relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className={`p-3 rounded-lg bg-white shadow-md group-hover:scale-110 transition-transform ${feature.color} micro-interaction`}>
-                      <feature.icon className={`h-8 w-8 ${feature.color}`} />
-                    </div>
+                    <feature.icon className={`h-10 w-10 ${feature.color} group-hover:scale-110 transition-transform micro-interaction`} />
                     <div className="w-12 h-12 rounded-full flex items-center justify-center font-mono bg-gray-100 text-gray-900 text-xl font-bold shimmering-border">
                       {index + 1}
                     </div>

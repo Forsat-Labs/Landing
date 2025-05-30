@@ -1,6 +1,5 @@
-
-import React, { useEffect } from 'react';
-import { ArrowRight, BarChart3, Database, LineChart, ListOrdered } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { BarChart3, Database, LineChart, ListOrdered } from 'lucide-react';
 
 const steps = [
   {
@@ -30,6 +29,8 @@ const steps = [
 ];
 
 const HowItWorksSection: React.FC = () => {
+  const [lineHeight, setLineHeight] = useState(0);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -41,12 +42,39 @@ const HowItWorksSection: React.FC = () => {
     
     document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right')
       .forEach(el => observer.observe(el));
+
+    // Scroll-based line drawing animation
+    const handleScroll = () => {
+      const section = document.getElementById('how-it-works');
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+
+      // Calculate scroll progress through the section
+      // Start drawing when section enters viewport, finish when it leaves
+      const startOffset = windowHeight * 0.8; // Start when section is 80% visible
+      const scrollProgress = Math.max(0, Math.min(1, 
+        (startOffset - sectionTop) / (sectionHeight + startOffset)
+      ));
+
+      // Set line height as percentage (0% to 100%)
+      setLineHeight(scrollProgress * 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
       
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
-    <div className="bg-gray-50 py-24 relative overflow-hidden">
+    <div className="bg-white py-24 relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 w-full h-full opacity-5">
@@ -69,15 +97,24 @@ const HowItWorksSection: React.FC = () => {
         </div>
         
         <div className="relative">
-          {/* Connector Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
+          {/* Connector Line - Scroll-based drawing animation */}
+          <div className="absolute left-1/2 top-0 w-1 transform -translate-x-1/2 hidden md:block z-1" style={{ height: 'calc(100% - 5rem)' }}>
+            <div 
+              className="w-full bg-gray-200"
+              style={{ 
+                height: `${lineHeight}%`,
+                transformOrigin: 'top',
+                marginTop: '5rem'
+              }}
+            ></div>
+          </div>
           
           <div className="space-y-20 relative">
             {steps.map((step, index) => (
               <div key={index} className={`relative reveal-${index % 2 === 0 ? 'left' : 'right'}`}>
                 <div className={`md:flex items-center ${index % 2 === 0 ? '' : 'flex-row-reverse'}`}>
-                  {/* Icon */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-10 mb-4 md:mb-0">
+                  {/* Icon - Desktop only */}
+                  <div className="hidden md:block md:static z-10 mb-4 md:mb-0">
                     <div className={`${step.color} rounded-full p-4 w-16 h-16 flex items-center justify-center shadow-lg md:mx-8 hover:scale-110 transition-transform duration-300`}>
                       <step.icon size={24} />
                     </div>
@@ -85,25 +122,25 @@ const HowItWorksSection: React.FC = () => {
                   
                   {/* Content */}
                   <div className={`bg-white rounded-xl shadow-lg p-6 md:p-8 md:w-5/12 ml-auto relative ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} glass-card hover-lift`}>
+                    {/* Icon - Mobile only, inside content box */}
+                    <div className="block md:hidden mb-4">
+                      <div className={`${step.color} rounded-full p-3 w-12 h-12 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300`}>
+                        <step.icon size={18} />
+                      </div>
+                    </div>
+                    
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {step.title}
                     </h3>
                     <p className="text-gray-600">
                       {step.description}
                     </p>
-                    <div className={`mt-4 w-12 h-1 bg-gradient-to-r from-forsat-pink to-forsat-orange rounded-full ${index % 2 === 0 ? 'ml-auto' : ''}`}></div>
+                    <div className={`mt-4 w-12 h-1 bg-gradient-to-r from-forsat-pink to-forsat-orange rounded-full ${index % 2 === 0 ? 'md:ml-auto' : ''}`}></div>
                   </div>
                   
                   {/* Spacer for every other step */}
                   <div className="hidden md:block md:w-5/12"></div>
                 </div>
-                
-                {/* Arrow for next step */}
-                {index < steps.length - 1 && (
-                  <div className="flex justify-center my-4 md:my-0">
-                    <ArrowRight className="text-bitcoin transform rotate-90 md:rotate-0 animate-bounce" size={24} />
-                  </div>
-                )}
               </div>
             ))}
           </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Github, Twitter, Globe, ArrowUpRight } from 'lucide-react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
@@ -11,31 +10,32 @@ const Footer: React.FC = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center mb-4 reveal-left">
-              <span className="text-3xl font-bold">
-                <span className="text-bitcoin">F</span>
-                <span className="text-glow">orsat</span>
-              </span>
+          <div className="col-span-1 md:col-span-2 text-center md:text-left">
+            <div className="flex items-center mb-4 reveal-left justify-center md:justify-start">
+              <img 
+                src="/forsat-logo.svg" 
+                alt="Forsat - Bitcoin Prediction Markets" 
+                className="h-6 w-auto"
+              />
             </div>
-            <p className="text-gray-400 max-w-md reveal-left" style={{ transitionDelay: '100ms' }}>
+            <p className="text-gray-400 max-w-md reveal-left mx-auto md:mx-0" style={{ transitionDelay: '100ms' }}>
               The first Bitcoin-native prediction market platform. Stake your belief on Bitcoin mainnet with unparalleled security and transparency.
             </p>
-            <div className="flex space-x-4 mt-6 reveal-left" style={{ transitionDelay: '200ms' }}>
-              <a href="#" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+            <div className="flex space-x-4 mt-6 reveal-left justify-center md:justify-start" style={{ transitionDelay: '200ms' }}>
+              <a href="https://x.com/forsatofficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://github.com/Forsat-Labs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
                 <Globe size={20} />
               </a>
             </div>
           </div>
           
-          <div className="reveal-up" style={{ transitionDelay: '300ms' }}>
-            <h3 className="text-lg font-semibold mb-4 flex items-center">
+          <div className="reveal-up text-center md:text-left" style={{ transitionDelay: '300ms' }}>
+            <h3 className="text-lg font-semibold mb-4 flex items-center justify-center md:justify-start">
               <span className="w-2 h-2 rounded-full bg-bitcoin mr-2"></span>
               Resources
             </h3>
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
               <li>
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                    <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                       <span className="relative transition-all duration-300 group-hover:pl-2">Documentation</span>
                       <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
               <li>
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                    <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                       <span className="relative transition-all duration-300 group-hover:pl-2">Whitepaper</span>
                       <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
@@ -77,13 +77,13 @@ const Footer: React.FC = () => {
                 </HoverCard>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Blog</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                   <span className="relative transition-all duration-300 group-hover:pl-2">FAQ</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -91,32 +91,32 @@ const Footer: React.FC = () => {
             </ul>
           </div>
           
-          <div className="reveal-up" style={{ transitionDelay: '400ms' }}>
-            <h3 className="text-lg font-semibold mb-4 flex items-center">
+          <div className="reveal-up text-center md:text-left" style={{ transitionDelay: '400ms' }}>
+            <h3 className="text-lg font-semibold mb-4 flex items-center justify-center md:justify-start">
               <span className="w-2 h-2 rounded-full bg-bitcoin mr-2"></span>
               Company
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                   <span className="relative transition-all duration-300 group-hover:pl-2">About</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Careers</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Contact</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4 justify-center md:justify-start">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Privacy Policy</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
