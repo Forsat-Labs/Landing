@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
               <li>
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                    <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                       <span className="relative transition-all duration-300 group-hover:pl-2">Documentation</span>
                       <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
               <li>
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                    <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                       <span className="relative transition-all duration-300 group-hover:pl-2">Whitepaper</span>
                       <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </a>
@@ -77,13 +77,13 @@ const Footer: React.FC = () => {
                 </HoverCard>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Blog</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                   <span className="relative transition-all duration-300 group-hover:pl-2">FAQ</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -98,25 +98,25 @@ const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                   <span className="relative transition-all duration-300 group-hover:pl-2">About</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Careers</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Contact</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white flex items-center group">
+                <a href="#" className="text-gray-400 hover:text-white flex items-center group pl-4">
                   <span className="relative transition-all duration-300 group-hover:pl-2">Privacy Policy</span>
                   <ArrowUpRight className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
