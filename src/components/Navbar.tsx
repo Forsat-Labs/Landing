@@ -89,8 +89,10 @@ const Navbar: React.FC = () => {
               )}
             </div>
             
-            <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white btn-glow btn-hover-slide">
-              Launch App
+            <Button asChild className="bg-bitcoin hover:bg-forsat-orange text-white btn-glow btn-hover-slide">
+              <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
+                Launch App
+              </a>
             </Button>
           </div>
           
@@ -153,10 +155,13 @@ const Navbar: React.FC = () => {
               </div>
               
               <Button 
-                className="bg-bitcoin hover:bg-bitcoin-dark text-white w-full mt-2"
+                asChild
+                className="bg-bitcoin hover:bg-forsat-orange text-white w-full mt-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Launch App
+                <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
+                  Launch App
+                </a>
               </Button>
             </div>
           </div>

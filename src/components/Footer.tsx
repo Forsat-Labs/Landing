@@ -22,13 +22,13 @@ const Footer: React.FC = () => {
               The first Bitcoin-native prediction market platform. Stake your belief on Bitcoin mainnet with unparalleled security and transparency.
             </p>
             <div className="flex space-x-4 mt-6 reveal-left justify-center md:justify-start" style={{ transitionDelay: '200ms' }}>
-              <a href="#" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://x.com/forsatofficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://github.com/Forsat-Labs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
                 <Github size={20} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
                 <Globe size={20} />
               </a>
             </div>

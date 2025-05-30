@@ -195,14 +195,19 @@ const HeroSection: React.FC = () => {
               Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards - all secured by Bitcoin mainnet.
             </p>
             <div className="flex flex-wrap gap-4 mt-10">
-              <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction">
-                Launch App
+              <Button asChild className="bg-bitcoin hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction">
+                <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
+                  Launch App
+                </a>
               </Button>
               <Button 
+                asChild
                 variant="outline" 
                 className="border-white/20 bg-white/5 hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide micro-interaction"
               >
-                Learn More
+                <a href="#features">
+                  Learn More
+                </a>
               </Button>
             </div>
             

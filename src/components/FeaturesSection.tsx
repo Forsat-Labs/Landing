@@ -51,7 +51,7 @@ const FeaturesSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="py-24 bg-gradient-to-b from-white to-gray-50">
+    <div id="features" className="py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 reveal-up">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4 premium-text">
