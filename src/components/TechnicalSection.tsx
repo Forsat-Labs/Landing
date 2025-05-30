@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Box, CircleOff, Lock, MessageSquare, Server, Shield } from 'lucide-react';
+import { Bitcoin, CircleOff, Lock, Sparkles, Server, Shield } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 const TechnicalSection: React.FC = () => {
@@ -19,7 +18,7 @@ const TechnicalSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <Card className="bg-transparent border border-gray-800 hover:border-gray-700 transition-all">
             <CardHeader>
-              <Box className="h-10 w-10 text-bitcoin mb-4" />
+              <Bitcoin className="h-10 w-10 text-orange-500 mb-4" />
               <CardTitle className="text-white">Bitcoin Layer 1</CardTitle>
             </CardHeader>
             <CardContent>
@@ -31,7 +30,7 @@ const TechnicalSection: React.FC = () => {
           
           <Card className="bg-transparent border border-gray-800 hover:border-gray-700 transition-all">
             <CardHeader>
-              <MessageSquare className="h-10 w-10 text-forsat-blue mb-4" />
+              <Sparkles className="h-10 w-10 text-blue-500 mb-4" />
               <CardTitle className="text-white">AI Agent</CardTitle>
             </CardHeader>
             <CardContent>

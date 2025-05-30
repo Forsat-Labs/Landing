@@ -192,7 +192,7 @@ const HeroSection: React.FC = () => {
               <span className="gradient-text">Belief on Bitcoin</span>
             </h1>
             <p className="max-w-3xl mt-6 text-xl leading-relaxed text-gray-300">
-              Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards — all secured by Bitcoin mainnet.
+              Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards - all secured by Bitcoin mainnet.
             </p>
             <div className="flex flex-wrap gap-4 mt-10">
               <Button className="bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction">
