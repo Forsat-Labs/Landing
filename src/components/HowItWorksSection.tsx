@@ -75,8 +75,8 @@ const HowItWorksSection: React.FC = () => {
             {steps.map((step, index) => (
               <div key={index} className={`relative reveal-${index % 2 === 0 ? 'left' : 'right'}`}>
                 <div className={`md:flex items-center ${index % 2 === 0 ? '' : 'flex-row-reverse'}`}>
-                  {/* Icon */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none z-10 mb-4 md:mb-0">
+                  {/* Icon - Desktop only */}
+                  <div className="hidden md:block md:static z-10 mb-4 md:mb-0">
                     <div className={`${step.color} rounded-full p-4 w-16 h-16 flex items-center justify-center shadow-lg md:mx-8 hover:scale-110 transition-transform duration-300`}>
                       <step.icon size={24} />
                     </div>
@@ -84,13 +84,20 @@ const HowItWorksSection: React.FC = () => {
                   
                   {/* Content */}
                   <div className={`bg-white rounded-xl shadow-lg p-6 md:p-8 md:w-5/12 ml-auto relative ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} glass-card hover-lift`}>
+                    {/* Icon - Mobile only, inside content box */}
+                    <div className="block md:hidden mb-4">
+                      <div className={`${step.color} rounded-full p-3 w-12 h-12 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300`}>
+                        <step.icon size={18} />
+                      </div>
+                    </div>
+                    
                     <h3 className="text-xl font-bold text-gray-900 mb-2">
                       {step.title}
                     </h3>
                     <p className="text-gray-600">
                       {step.description}
                     </p>
-                    <div className={`mt-4 w-12 h-1 bg-gradient-to-r from-forsat-pink to-forsat-orange rounded-full ${index % 2 === 0 ? 'ml-auto' : ''}`}></div>
+                    <div className={`mt-4 w-12 h-1 bg-gradient-to-r from-forsat-pink to-forsat-orange rounded-full ${index % 2 === 0 ? 'md:ml-auto' : ''}`}></div>
                   </div>
                   
                   {/* Spacer for every other step */}
