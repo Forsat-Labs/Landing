@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { ArrowRight, BarChart3, Database, LineChart, ListOrdered } from 'lucide-react';
+import { BarChart3, Database, LineChart, ListOrdered } from 'lucide-react';
 
 const steps = [
   {
@@ -97,13 +96,6 @@ const HowItWorksSection: React.FC = () => {
                   {/* Spacer for every other step */}
                   <div className="hidden md:block md:w-5/12"></div>
                 </div>
-                
-                {/* Arrow for next step */}
-                {index < steps.length - 1 && (
-                  <div className="flex justify-center my-4 md:my-0">
-                    <ArrowRight className="text-bitcoin transform rotate-90 md:rotate-0 animate-bounce" size={24} />
-                  </div>
-                )}
               </div>
             ))}
           </div>
