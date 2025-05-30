@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { cn } from "@/lib/utils";
 
 // Partner data with logo information
@@ -24,19 +24,25 @@ const partnerData = [
 ];
 
 const Partners: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 300);
-
-    return () => clearTimeout(timer);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    // Only observe elements within the partners section
+    document.querySelectorAll('.partners-section .reveal-up')
+      .forEach(el => observer.observe(el));
+      
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 relative z-10">
-      <div className="text-center mb-8">
+    <div className="w-full max-w-4xl mx-auto px-4 relative z-10 partners-section">
+      <div className="text-center mb-8 reveal-up" style={{ transitionDelay: '1200ms' }}>
         <h3 className="text-xl font-semibold text-white mb-2">Trusted Partners</h3>
         <p className="text-sm text-gray-400">Building the future of Bitcoin-native prediction markets together</p>
       </div>
@@ -46,14 +52,9 @@ const Partners: React.FC = () => {
         {partnerData.map((partner, index) => (
           <div
             key={partner.id}
-            className={cn(
-              "group relative transition-all duration-700 ease-out",
-              isVisible 
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-4"
-            )}
+            className="group relative reveal-up"
             style={{ 
-              transitionDelay: `${index * 150}ms` 
+              transitionDelay: `${1400 + (index * 150)}ms` 
             }}
           >
             <div className="relative p-6 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-lg group-hover:shadow-forsat-orange/5">
@@ -84,14 +85,9 @@ const Partners: React.FC = () => {
           {partnerData.map((partner, index) => (
             <div
               key={`mobile-${partner.id}`}
-              className={cn(
-                "transition-all duration-500 ease-out",
-                isVisible 
-                  ? "opacity-100 scale-100" 
-                  : "opacity-0 scale-95"
-              )}
+              className="reveal-up"
               style={{ 
-                transitionDelay: `${index * 100}ms` 
+                transitionDelay: `${1400 + (index * 100)}ms` 
               }}
             >
               <div className="p-4 rounded-lg border border-white/5 bg-white/[0.02] backdrop-blur-sm hover:border-white/10 transition-all duration-300">

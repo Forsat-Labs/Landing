@@ -45,11 +45,9 @@ const Index = () => {
           </section>
         </ScrollFade>
         
-        <ScrollFade direction="up" delay={300}>
-          <section id="how-it-works">
-            <HowItWorksSection />
-          </section>
-        </ScrollFade>
+        <section id="how-it-works">
+          <HowItWorksSection />
+        </section>
         
         <ScrollFade direction="up" delay={400}>
           <section id="technical">

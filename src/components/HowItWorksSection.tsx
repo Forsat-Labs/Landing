@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BarChart3, Database, LineChart, ListOrdered } from 'lucide-react';
 
 const steps = [
@@ -29,6 +29,8 @@ const steps = [
 ];
 
 const HowItWorksSection: React.FC = () => {
+  const [lineHeight, setLineHeight] = useState(0);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -40,12 +42,39 @@ const HowItWorksSection: React.FC = () => {
     
     document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right')
       .forEach(el => observer.observe(el));
+
+    // Scroll-based line drawing animation
+    const handleScroll = () => {
+      const section = document.getElementById('how-it-works');
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+
+      // Calculate scroll progress through the section
+      // Start drawing when section enters viewport, finish when it leaves
+      const startOffset = windowHeight * 0.8; // Start when section is 80% visible
+      const scrollProgress = Math.max(0, Math.min(1, 
+        (startOffset - sectionTop) / (sectionHeight + startOffset)
+      ));
+
+      // Set line height as percentage (0% to 100%)
+      setLineHeight(scrollProgress * 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
       
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
-    <div className="bg-gray-50 py-24 relative overflow-hidden">
+    <div className="bg-white py-24 relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-0 w-full h-full opacity-5">
@@ -68,8 +97,17 @@ const HowItWorksSection: React.FC = () => {
         </div>
         
         <div className="relative">
-          {/* Connector Line */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 transform -translate-x-1/2 hidden md:block"></div>
+          {/* Connector Line - Scroll-based drawing animation */}
+          <div className="absolute left-1/2 top-0 w-1 transform -translate-x-1/2 hidden md:block z-1" style={{ height: 'calc(100% - 5rem)' }}>
+            <div 
+              className="w-full bg-gray-200"
+              style={{ 
+                height: `${lineHeight}%`,
+                transformOrigin: 'top',
+                marginTop: '5rem'
+              }}
+            ></div>
+          </div>
           
           <div className="space-y-20 relative">
             {steps.map((step, index) => (
