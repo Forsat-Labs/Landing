@@ -44,7 +44,6 @@ const Partners: React.FC = () => {
     <div className="w-full max-w-4xl mx-auto px-4 relative z-10 partners-section">
       <div className="text-center mb-8 reveal-up" style={{ transitionDelay: '1200ms' }}>
         <h3 className="text-xl font-semibold text-white mb-2">Trusted Partners</h3>
-        <p className="text-sm text-gray-400">Building the future of Bitcoin-native prediction markets together</p>
       </div>
 
       {/* Desktop and Tablet Layout */}

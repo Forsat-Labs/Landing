@@ -23,7 +23,7 @@ const NavDropdownItem = ({ href, children }: { href: string, children: React.Rea
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [resourcesOpen, setResourcesOpen] = useState(false);
+  // const [resourcesOpen, setResourcesOpen] = useState(false); // Temporarily hidden - Resources dropdown
 
   // Add scroll event listener to detect when page is scrolled
   useEffect(() => {
@@ -42,10 +42,10 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
-  const toggleResourcesDropdown = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setResourcesOpen(!resourcesOpen);
-  };
+  // const toggleResourcesDropdown = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   setResourcesOpen(!resourcesOpen);
+  // }; // Temporarily hidden - Resources dropdown
 
   return (
     <nav className={`py-4 sticky top-0 z-50 transition-all duration-300 ${
@@ -68,8 +68,8 @@ const Navbar: React.FC = () => {
             <NavItem href="#how-it-works">How It Works</NavItem>
             <NavItem href="#technical">Technical</NavItem>
             
-            {/* Resources dropdown */}
-            <div className="relative">
+            {/* Resources dropdown - Temporarily hidden */}
+            {/* <div className="relative">
               <a 
                 href="#" 
                 className="flex items-center text-gray-300 hover:text-white transition-colors gap-1"
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
                   <NavDropdownItem href="#">Blog</NavDropdownItem>
                 </div>
               )}
-            </div>
+            </div> */}
             
             <Button asChild className="bg-bitcoin hover:bg-forsat-orange text-white btn-glow btn-hover-slide">
               <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
@@ -134,8 +134,8 @@ const Navbar: React.FC = () => {
                 Technical
               </a>
               
-              {/* Mobile Resources Dropdown */}
-              <div>
+              {/* Mobile Resources Dropdown - Temporarily hidden */}
+              {/* <div>
                 <button 
                   onClick={toggleResourcesDropdown}
                   className="flex items-center justify-between w-full text-left text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10"
@@ -152,7 +152,7 @@ const Navbar: React.FC = () => {
                     <NavDropdownItem href="#">Blog</NavDropdownItem>
                   </div>
                 )}
-              </div>
+              </div> */}
               
               <Button 
                 asChild

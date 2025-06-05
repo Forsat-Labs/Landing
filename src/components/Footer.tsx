@@ -9,32 +9,30 @@ const Footer: React.FC = () => {
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMxQTFBMUEiIGZpbGwtb3BhY2l0eT0iMC4zIj48cGF0aCBkPSJNMzYgMzR2LTRoLTJ2NGgtNHYyaDR2NGgydi00aDR2LTJoLTR6bTAtMzBWMGgtMnY0aC00djJoNHY0aDJWNmg0VjRoLTR6TTYgMzR2LTRINHY0SDB2Mmg0djRoMnYtNGg0di0ySDZ6TTYgNFYwSDR2NEgwdjJoNHY0aDJWNmg0VjRINnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-10"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="col-span-1 md:col-span-2 text-center md:text-left">
-            <div className="flex items-center mb-4 reveal-left justify-center md:justify-start">
-              <img 
-                src="/forsat-logo.svg" 
-                alt="Forsat - Bitcoin Prediction Markets" 
-                className="h-6 w-auto"
-              />
-            </div>
-            <p className="text-gray-400 max-w-md reveal-left mx-auto md:mx-0" style={{ transitionDelay: '100ms' }}>
-              The first Bitcoin-native prediction market platform. Stake your belief on Bitcoin mainnet with unparalleled security and transparency.
-            </p>
-            <div className="flex space-x-4 mt-6 reveal-left justify-center md:justify-start" style={{ transitionDelay: '200ms' }}>
-              <a href="https://x.com/forsatofficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
-                <Twitter size={20} />
-              </a>
-              <a href="https://github.com/Forsat-Labs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
-                <Github size={20} />
-              </a>
-              <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
-                <Globe size={20} />
-              </a>
-            </div>
+        {/* Centered layout with logo, description, and social icons */}
+        <div className="flex flex-col items-center text-center">
+          <div className="flex items-center mb-4 reveal-left">
+            <img 
+              src="/forsat-logo.svg" 
+              alt="Forsat - Bitcoin Prediction Markets" 
+              className="h-6 w-auto"
+            />
           </div>
+          <p className="text-gray-400 max-w-md reveal-left mx-auto" style={{ transitionDelay: '100ms' }}>
+            The first Bitcoin-native prediction market platform. Stake your belief on Bitcoin mainnet with unparalleled security and transparency.
+          </p>
+          <div className="flex space-x-4 mt-6 reveal-left justify-center" style={{ transitionDelay: '200ms' }}>
+            <a href="https://x.com/forsatofficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <Twitter size={20} />
+            </a>
+            <a href="https://github.com/Forsat-Labs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <Github size={20} />
+            </a>
+          </div>
+                  </div>
           
-          <div className="reveal-up text-center md:text-left" style={{ transitionDelay: '300ms' }}>
+          {/* Resources section - Temporarily hidden */}
+          {/* <div className="reveal-up text-center md:text-left" style={{ transitionDelay: '300ms' }}>
             <h3 className="text-lg font-semibold mb-4 flex items-center justify-center md:justify-start">
               <span className="w-2 h-2 rounded-full bg-bitcoin mr-2"></span>
               Resources
@@ -89,9 +87,10 @@ const Footer: React.FC = () => {
                 </a>
               </li>
             </ul>
-          </div>
+          </div> */}
           
-          <div className="reveal-up text-center md:text-left" style={{ transitionDelay: '400ms' }}>
+          {/* Company section - Temporarily hidden */}
+          {/* <div className="reveal-up text-center md:text-left" style={{ transitionDelay: '400ms' }}>
             <h3 className="text-lg font-semibold mb-4 flex items-center justify-center md:justify-start">
               <span className="w-2 h-2 rounded-full bg-bitcoin mr-2"></span>
               Company
@@ -122,8 +121,7 @@ const Footer: React.FC = () => {
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
+          </div> */}
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm reveal-up">
           <p>© {new Date().getFullYear()} Forsat. All rights reserved.</p>

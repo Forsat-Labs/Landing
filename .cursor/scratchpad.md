@@ -95,6 +95,23 @@ This is a React TypeScript project built with Vite, using shadcn-ui components a
 - [ ] **Task 4.1:** Remove bouncing arrows from How Forsat Works section
   - Success Criteria: How Forsat Works section displays cleanly without animated arrows between steps, maintaining visual flow and readability
 
+### Phase 5: Waitlist Integration (Future Implementation)
+- [ ] **Task 5.3:** Integrate Google Sheets for waitlist data collection
+  - **Current State**: Form is mocked - shows visual feedback but doesn't send data anywhere
+  - **Recommended Approach**: Google Apps Script Web App (free, simple, 15-min setup)
+  - **Steps Planned**:
+    1. **Create Google Sheet** (2 min) - Add headers: Timestamp, Email, IP Address (optional)
+    2. **Create Google Apps Script** (5 min) - Write script to receive POST requests and add to sheet
+    3. **Deploy as Web App** (3 min) - Get webhook URL, set anonymous access permissions
+    4. **Update React Form** (5 min) - Modify handleSubmit function, add error handling
+  - **Features to Include**:
+    - ✅ Duplicate email prevention
+    - ✅ Basic email validation  
+    - ✅ Automatic timestamp
+    - ✅ Success/error feedback
+    - ✅ Loading states
+  - **Success Criteria**: Functional waitlist that saves emails to Google Sheets with proper user feedback
+
 ## Detailed Implementation Plan
 
 ### Logo Replacement Strategy:
@@ -136,6 +153,8 @@ This is a React TypeScript project built with Vite, using shadcn-ui components a
 - [ ] **Task 3.2:** Test other section animations  
 - [ ] **Task 3.3:** Verify responsive behavior
 - [ ] **Task 4.1:** Remove bouncing arrows from How Forsat Works section
+- [x] **Task 5.1:** Hide Resources link and dropdown from navigation menu (commented out for future restoration)
+- [x] **Task 5.2:** Hide Resources and Company sections from footer and center the logo layout
 
 ### In Progress
 - [x] **PLANNER MODE: Analysis and surgical plan complete**
@@ -148,6 +167,8 @@ This is a React TypeScript project built with Vite, using shadcn-ui components a
 - [x] Documented exact changes with line numbers
 - [x] **Task 2.1: Remove ScrollFade wrapper from How It Works section** ✅
 - [x] **Task 2.2: Change section background to white** ✅
+- [x] **Task 5.1: Hide Resources link and dropdown from navigation menu** ✅
+- [x] **Task 5.2: Hide Resources and Company sections from footer and center the logo layout** ✅
 
 ## Current Status / Progress Tracking
 
@@ -191,6 +212,27 @@ This is a React TypeScript project built with Vite, using shadcn-ui components a
 1. **0-600ms**: Step containers and icons animate in (`reveal-left`, `reveal-right`)
 2. **Scroll-based**: Connector line dynamically draws based on user scroll position through section
 3. **Progressive**: Line growth directly correlates with section scroll progress
+
+**Navigation Menu Update - COMPLETED:**
+- **Task**: Hide Resources dropdown from top navigation menu
+- **Implementation**: All Resources-related code commented out for easy restoration
+- **Files Modified**: `src/components/Navbar.tsx`
+  - Commented out `resourcesOpen` state variable 
+  - Commented out `toggleResourcesDropdown` function
+  - Commented out desktop Resources dropdown (lines ~67-81)
+  - Commented out mobile Resources dropdown (lines ~118-135)
+- **Result**: Clean navigation menu without Resources link, can be easily restored by uncommenting
+
+**Footer Layout Update - COMPLETED:**
+- **Task**: Hide footer link sections and center the Forsat logo, description, and social icons
+- **Implementation**: Commented out Resources and Company sections, restructured layout to be centered
+- **Files Modified**: `src/components/Footer.tsx`
+  - Changed from `grid grid-cols-1 md:grid-cols-4 gap-8` to `flex flex-col items-center text-center`
+  - Commented out entire Resources section (Documentation, Whitepaper, Blog, FAQ)
+  - Commented out entire Company section (About, Careers, Contact, Privacy Policy)
+  - Centered logo, description text, and social media icons
+  - Removed responsive alignment classes (md:text-left, md:justify-start)
+- **Result**: Clean, centered footer with just logo, description, social icons, and copyright. All link sections can be restored by uncommenting
 
 ## Testing Checklist
 
