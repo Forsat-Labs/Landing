@@ -287,8 +287,8 @@ const HeroSection: React.FC = () => {
             </div>
             
             {/* Small decorative elements */}
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-lg bg-bitcoin rotate-12 opacity-80 animate-pulse-slow"></div>
-            <div className="absolute -top-6 -right-6 w-16 h-16 rounded-lg bg-forsat-pink -rotate-12 opacity-80 animate-pulse-slow delay-1000"></div>
+            <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-lg bg-bitcoin rotate-12 opacity-80 animate-pulse-slow -z-10"></div>
+            <div className="absolute -top-6 -right-6 w-16 h-16 rounded-lg bg-forsat-pink -rotate-12 opacity-80 animate-pulse-slow delay-1000 -z-10"></div>
           </div>
         </div>
 
