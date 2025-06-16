@@ -284,7 +284,7 @@ const ComingSoonModal: React.FC<ComingSoonModalProps> = ({ isOpen, onClose }) =>
             </DialogTitle>
             {!isSuccess && (
               <DialogDescription className="text-base sm:text-lg text-center text-gray-400">
-                Join our waitlist for early access - we're launching soon.
+                Join our waitlist for early access to the Forsat Beta - we're launching soon.
               </DialogDescription>
             )}
           </DialogHeader>
