@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import FeaturesSection from '@/components/FeaturesSection';
@@ -8,8 +8,37 @@ import CallToAction from '@/components/CallToAction';
 import Footer from '@/components/Footer';
 import BackgroundCanvas from '@/components/BackgroundCanvas';
 import { ScrollFade } from '@/components/ScrollAnimations';
+import WaitlistModal from '@/components/WaitlistModal';
+import ComingSoonModal from '@/components/ComingSoonModal';
 
 const Index = () => {
+  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+  const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
+
+  const handleWaitlistClick = () => {
+    console.log('Opening waitlist modal');
+    setIsWaitlistOpen(true);
+  };
+
+  const handleWaitlistClose = () => {
+    console.log('Closing waitlist modal');
+    setIsWaitlistOpen(false);
+  };
+
+  const handleComingSoonClick = () => {
+    console.log('Opening coming soon modal');
+    setIsComingSoonOpen(true);
+  };
+
+  const handleComingSoonClose = () => {
+    console.log('Closing coming soon modal');
+    setIsComingSoonOpen(false);
+  };
+
+  useEffect(() => {
+    console.log('Waitlist modal state:', isWaitlistOpen);
+  }, [isWaitlistOpen]);
+
   useEffect(() => {
     // Setup scroll-triggered animations
     const setupScrollAnimations = () => {
@@ -34,10 +63,10 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col page-transition">
       <BackgroundCanvas />
-      <Navbar />
+      <Navbar onWaitlistClick={handleComingSoonClick} />
       
       <main className="flex-grow">
-        <HeroSection />
+        <HeroSection onWaitlistClick={handleWaitlistClick} />
         
         <ScrollFade direction="up" delay={200}>
           <section id="features">
@@ -56,11 +85,21 @@ const Index = () => {
         </ScrollFade>
         
         <ScrollFade direction="up" delay={500}>
-          <CallToAction />
+          <CallToAction onWaitlistClick={handleWaitlistClick} />
         </ScrollFade>
       </main>
       
       <Footer />
+      
+      <WaitlistModal 
+        isOpen={isWaitlistOpen}
+        onClose={handleWaitlistClose}
+      />
+
+      <ComingSoonModal
+        isOpen={isComingSoonOpen}
+        onClose={handleComingSoonClose}
+      />
     </div>
   );
 };

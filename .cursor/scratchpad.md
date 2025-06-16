@@ -309,3 +309,224 @@ This is a React TypeScript project built with Vite, using shadcn-ui components a
 - `favicon.ico` - Standard favicon for all browsers
 - `favicon.svg` - Modern SVG favicon for browsers that support it
 - `favicon-16x16.png`
+
+## Updated Google Apps Script Code
+
+```javascript
+// Rate limiting constants
+const RATE_LIMIT = {
+  MAX_ATTEMPTS_PER_IP: 15,    // Increased to 15 attempts per IP
+  WINDOW_HOURS: 24,           // Time window in hours
+  COOLDOWN_MINUTES: 2,        // Reduced to 2 minutes
+  MAX_IPS_STORED: 1000,       // Maximum number of IPs to store
+};
+
+function doGet(e) {
+  try {
+    // Log the incoming request parameters
+    Logger.log('Received parameters:', JSON.stringify(e.parameter));
+    
+    // Get data directly from query parameters
+    const data = {
+      email: e.parameter.email,
+      bitcoinAddress: e.parameter.bitcoinAddress || ''
+    };
+    
+    Logger.log('Processed data:', JSON.stringify(data));
+    
+    const userIP = e.parameter.userip || 'unknown';
+    
+    // Get the active spreadsheet
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    Logger.log('Connected to spreadsheet: ' + ss.getName());
+    
+    // Get or create the "Waitlist" sheet
+    let sheet = ss.getSheetByName('Waitlist');
+    if (!sheet) {
+      sheet = ss.insertSheet('Waitlist');
+      // Add headers if this is a new sheet
+      sheet.getRange('A1:D1').setValues([['Timestamp', 'Email', 'Bitcoin Address', 'IP Address']]);
+      Logger.log('Created new sheet "Waitlist" with headers');
+    }
+    
+    // Log current sheet data
+    const currentData = sheet.getDataRange().getValues();
+    Logger.log('Current sheet data:', JSON.stringify(currentData));
+    
+    // Validate required fields
+    if (!data.email) {
+      throw new Error('Email is required');
+    }
+    
+    // Check for duplicate email
+    const values = sheet.getDataRange().getValues();
+    const emailColumn = 1; // Column B (0-based)
+    const isDuplicate = values.some((row, index) => 
+      index > 0 && row[emailColumn].toLowerCase() === data.email.toLowerCase()
+    );
+    
+    if (isDuplicate) {
+      throw new Error('Email already registered');
+    }
+    
+    // Add new row with timestamp
+    const timestamp = new Date().toISOString();
+    const newRow = [timestamp, data.email, data.bitcoinAddress, userIP];
+    Logger.log('Adding new row:', JSON.stringify(newRow));
+    
+    sheet.appendRow(newRow);
+    Logger.log('Successfully added row to sheet');
+    
+    return ContentService.createTextOutput(JSON.stringify({
+      success: true,
+      message: 'Successfully added to waitlist'
+    })).setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    Logger.log('Error in doGet:', error.toString());
+    Logger.log('Error stack:', error.stack);
+    return ContentService.createTextOutput(JSON.stringify({
+      success: false,
+      error: error.toString()
+    })).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function checkRateLimit(ip) {
+  try {
+    const props = PropertiesService.getScriptProperties();
+    const now = new Date().getTime();
+    
+    // Get rate limit data
+    let rateLimitData = props.getProperty('rateLimitData');
+    if (rateLimitData) {
+      rateLimitData = JSON.parse(rateLimitData);
+    } else {
+      rateLimitData = {};
+    }
+    
+    // Clean up old entries
+    const cutoff = now - (RATE_LIMIT.WINDOW_HOURS * 60 * 60 * 1000);
+    Object.keys(rateLimitData).forEach(key => {
+      if (rateLimitData[key].windowStart < cutoff) {
+        delete rateLimitData[key];
+      }
+    });
+    
+    // Check if we need to limit stored IPs
+    const ipCount = Object.keys(rateLimitData).length;
+    if (ipCount > RATE_LIMIT.MAX_IPS_STORED) {
+      // Remove oldest entries
+      const sortedIPs = Object.entries(rateLimitData)
+        .sort(([,a], [,b]) => a.windowStart - b.windowStart)
+        .slice(ipCount - RATE_LIMIT.MAX_IPS_STORED);
+      rateLimitData = Object.fromEntries(sortedIPs);
+    }
+    
+    // Get IP data
+    const ipData = rateLimitData[ip] || {
+      attempts: 0,
+      lastAttempt: 0,
+      windowStart: now
+    };
+    
+    // Check if window needs reset
+    if (now - ipData.windowStart > RATE_LIMIT.WINDOW_HOURS * 60 * 60 * 1000) {
+      ipData.attempts = 0;
+      ipData.lastAttempt = 0;
+      ipData.windowStart = now;
+    }
+    
+    // Check cooldown period
+    const timeSinceLastAttempt = now - ipData.lastAttempt;
+    const cooldownPeriod = RATE_LIMIT.COOLDOWN_MINUTES * 60 * 1000;
+    
+    if (timeSinceLastAttempt < cooldownPeriod) {
+      const timeLeft = Math.ceil((cooldownPeriod - timeSinceLastAttempt) / 1000 / 60);
+      return {
+        allowed: false,
+        error: `Please wait ${timeLeft} minute${timeLeft > 1 ? 's' : ''} before trying again`
+      };
+    }
+    
+    // Check maximum attempts
+    if (ipData.attempts >= RATE_LIMIT.MAX_ATTEMPTS_PER_IP) {
+      const hoursLeft = Math.ceil(
+        (RATE_LIMIT.WINDOW_HOURS * 60 * 60 * 1000 - (now - ipData.windowStart)) / 1000 / 60 / 60
+      );
+      return {
+        allowed: false,
+        error: `Maximum attempts reached. Please try again in ${hoursLeft} hour${hoursLeft > 1 ? 's' : ''}`
+      };
+    }
+    
+    // Save updated data
+    rateLimitData[ip] = ipData;
+    props.setProperty('rateLimitData', JSON.stringify(rateLimitData));
+    
+    return { allowed: true };
+    
+  } catch (error) {
+    Logger.log('Error checking rate limit:', error);
+    return { allowed: true }; // Fail open if storage is not available
+  }
+}
+
+function updateRateLimit(ip) {
+  try {
+    const props = PropertiesService.getScriptProperties();
+    const now = new Date().getTime();
+    
+    // Get rate limit data
+    let rateLimitData = props.getProperty('rateLimitData');
+    rateLimitData = rateLimitData ? JSON.parse(rateLimitData) : {};
+    
+    // Get IP data
+    const ipData = rateLimitData[ip] || {
+      attempts: 0,
+      lastAttempt: 0,
+      windowStart: now
+    };
+    
+    // Reset window if needed
+    if (now - ipData.windowStart > RATE_LIMIT.WINDOW_HOURS * 60 * 60 * 1000) {
+      ipData.attempts = 1;
+      ipData.lastAttempt = now;
+      ipData.windowStart = now;
+    } else {
+      ipData.attempts += 1;
+      ipData.lastAttempt = now;
+    }
+    
+    // Save updated data
+    rateLimitData[ip] = ipData;
+    props.setProperty('rateLimitData', JSON.stringify(rateLimitData));
+    
+  } catch (error) {
+    Logger.log('Error updating rate limit:', error);
+  }
+}
+```
+
+## Rate Limiting Implementation Details
+
+The rate limiting system now works on both client and server side:
+
+### Client-side Rate Limiting
+- Uses localStorage to track submission attempts
+- Limits: 5 attempts per 24-hour window
+- 5-minute cooldown between attempts
+- Prevents spam by limiting client-side form submissions
+- Provides user feedback about remaining cooldown time
+- Resets window after 24 hours
+
+### Server-side Rate Limiting
+- Uses Google Apps Script Properties Service to track IP-based attempts
+- Limits: 10 attempts per IP per 24-hour window
+- 5-minute cooldown between attempts per IP
+- Stores up to 1000 IP addresses (removes oldest when limit reached)
+- Provides detailed error messages about remaining cooldown time
+- Automatically cleans up old rate limit data
+- Only updates rate limit on successful submissions
+
+This dual-layer approach provides robust protection against spam while maintaining a good user experience. The client-side rate limiting helps prevent unnecessary server requests, while the server-side rate limiting provides a strong security layer that can't be bypassed by clearing localStorage or using multiple browsers.

@@ -1,22 +1,21 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Check } from 'lucide-react';
 
-const CallToAction: React.FC = () => {
+interface CallToActionProps {
+  onWaitlistClick: () => void;
+}
+
+const CallToAction: React.FC<CallToActionProps> = ({ onWaitlistClick }) => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      // This would typically connect to a newsletter service
-      setSubmitted(true);
-      setTimeout(() => {
-        setEmail('');
-        setSubmitted(false);
-      }, 3000);
+      onWaitlistClick();
+      setEmail('');
     }
   };
 
@@ -68,33 +67,12 @@ const CallToAction: React.FC = () => {
         </div>
         
         <div className="max-w-md mx-auto reveal-up" style={{ transitionDelay: '200ms' }}>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-            <Input 
-              placeholder="Enter your email" 
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="glass-morphism border-white/20 text-white placeholder:text-gray-400 focus:border-forsat-orange focus:ring-forsat-orange"
-              required
-            />
-            <Button 
-              type="submit"
-              className={`bg-bitcoin hover:bg-bitcoin-dark text-white font-semibold btn-hover-slide ${submitted ? 'bg-green-500 hover:bg-green-600' : ''}`}
-              disabled={submitted}
-            >
-              {submitted ? (
-                <>
-                  <Check size={18} />
-                  <span>Joined!</span>
-                </>
-              ) : (
-                'Join Waitlist'
-              )}
-            </Button>
-          </form>
-          <p className="text-xs text-gray-400 mt-4">
-            We'll never share your email. Unsubscribe anytime.
-          </p>
+          <Button 
+            onClick={onWaitlistClick}
+            className="px-16 bg-forsat-orange hover:bg-forsat-orange/90 text-white font-semibold btn-hover-slide text-lg py-8"
+          >
+            Join Waitlist
+          </Button>
         </div>
         
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">

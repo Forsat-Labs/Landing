@@ -5,10 +5,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bitcoin, Check, Sparkles, Loader2 } from 'lucide-react';
+import { Bitcoin, Check, Sparkles, Loader2, Star, CheckCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-interface WaitlistModalProps {
+interface ComingSoonModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
@@ -20,9 +20,9 @@ interface FormData {
 
 // Rate limiting constants
 const RATE_LIMIT = {
-  MAX_ATTEMPTS: 10, // Increased from 5 to 10 attempts per window
-  WINDOW_HOURS: 24, // Time window in hours
-  COOLDOWN_MINUTES: 2, // Reduced from 5 to 2 minutes
+  MAX_ATTEMPTS: 10,
+  WINDOW_HOURS: 24,
+  COOLDOWN_MINUTES: 2,
 };
 
 interface RateLimitData {
@@ -55,31 +55,24 @@ const BitcoinParticle = ({ x, y, delay, opacity, floatY }: { x: number; y: numbe
   </motion.div>
 );
 
-const PerkCard = ({ title, description, icon: Icon, delay }: { 
-  title: string; 
-  description: string; 
-  icon: React.ElementType;
-  delay: number;
-}) => (
+const PerkCard = ({ title, description, icon: Icon, delay }: { title: string; description: string; icon: any; delay: number }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay, duration: 0.5 }}
-    className="p-4 rounded-lg bg-white/5 border border-white/10 hover:border-bitcoin/50 transition-all duration-300 group"
+    className="flex items-start space-x-4 p-4 rounded-lg bg-white/5"
   >
-    <div className="flex items-start gap-3">
-      <div className="p-2 rounded-lg bg-bitcoin/10 text-bitcoin group-hover:scale-110 transition-transform duration-300">
-        <Icon className="w-5 h-5" />
-      </div>
-      <div>
-        <h4 className="font-semibold text-white mb-1">{title}</h4>
-        <p className="text-sm text-gray-400">{description}</p>
-      </div>
+    <div className="mt-1">
+      <Icon className="h-5 w-5 text-bitcoin" />
+    </div>
+    <div>
+      <h4 className="text-sm font-semibold text-white">{title}</h4>
+      <p className="text-sm text-gray-400">{description}</p>
     </div>
   </motion.div>
 );
 
-const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
+const ComingSoonModal: React.FC<ComingSoonModalProps> = ({ isOpen, onClose }) => {
   const [showBitcoinField, setShowBitcoinField] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -91,12 +84,12 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
 
   useEffect(() => {
     if (isOpen) {
-      const newParticles = Array.from({ length: 24 }, () => ({
+      const newParticles = Array.from({ length: 100 }, () => ({
         x: Math.random() * 100,
         y: Math.random() * 100,
-        delay: Math.random() * 0.5,
-        opacity: 0.2 + Math.random() * 0.5,
-        floatY: (Math.random() - 0.5) * 30
+        delay: Math.random() * 4,
+        opacity: 0.75 + Math.random() * 0.15,
+        floatY: -30 + Math.random() * 60
       }));
       setParticles(newParticles);
     } else {
@@ -119,7 +112,6 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
       if (storedData) {
         rateData = JSON.parse(storedData);
         
-        // Check if we need to reset the window
         if (now - rateData.windowStart > RATE_LIMIT.WINDOW_HOURS * 60 * 60 * 1000) {
           rateData = {
             attempts: 0,
@@ -128,7 +120,6 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
           };
         }
         
-        // Check cooldown period
         const timeSinceLastAttempt = now - rateData.lastAttempt;
         const cooldownPeriod = RATE_LIMIT.COOLDOWN_MINUTES * 60 * 1000;
         
@@ -140,7 +131,6 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
           };
         }
 
-        // Check maximum attempts
         if (rateData.attempts >= RATE_LIMIT.MAX_ATTEMPTS) {
           const hoursLeft = Math.ceil(
             (RATE_LIMIT.WINDOW_HOURS * 60 * 60 * 1000 - (now - rateData.windowStart)) / 1000 / 60 / 60
@@ -161,7 +151,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
       return { allowed: true };
     } catch (error) {
       console.error('Error checking rate limit:', error);
-      return { allowed: true }; // Fail open if localStorage is not available
+      return { allowed: true };
     }
   };
 
@@ -175,7 +165,6 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
         windowStart: now,
       };
 
-      // Reset window if needed
       if (now - rateData.windowStart > RATE_LIMIT.WINDOW_HOURS * 60 * 60 * 1000) {
         rateData = {
           attempts: 1,
@@ -194,7 +183,6 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
   };
 
   const onSubmit = async (data: FormData) => {
-    // Check rate limit before proceeding
     const rateLimitCheck = checkRateLimit();
     if (!rateLimitCheck.allowed) {
       setError(rateLimitCheck.timeLeft);
@@ -207,11 +195,10 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
     try {
       const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxjTCKUDVa9xvI-xIk9nvHVMYRrGbB01aR7f2VsubdSG27DDfcZ2ikXnxCOUGQopDw8/exec';
       
-      // Prepare the query parameters
       const params = new URLSearchParams({
         email: data.email,
         bitcoinAddress: data.bitcoinAddress || '',
-        timestamp: new Date().toISOString() // Add timestamp to help with debugging
+        timestamp: new Date().toISOString()
       });
 
       console.log('Submitting to URL:', `${GOOGLE_SCRIPT_URL}?${params.toString()}`);
@@ -223,15 +210,11 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
 
       console.log('Form submitted, response status:', response.status);
       
-      // Since we're using no-cors, we can't read the response
-      // We'll assume success if the request doesn't throw
       setIsSuccess(true);
       reset();
       
-      // Update rate limit only on successful submission
       updateRateLimit();
       
-      // Trigger confetti
       confetti({
         particleCount: 100,
         spread: 70,
@@ -297,11 +280,11 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
         <DialogContent className="bg-forsat-black/40 backdrop-blur-xl border border-white/10 text-white w-[90vw] max-w-lg mx-auto p-6 sm:p-8">
           <DialogHeader className="space-y-3">
             <DialogTitle className="text-2xl sm:text-3xl font-bold text-center text-white">
-              {!isSuccess ? 'Join the Waitlist' : null}
+              {!isSuccess ? 'Coming Soon' : null}
             </DialogTitle>
             {!isSuccess && (
               <DialogDescription className="text-base sm:text-lg text-center text-gray-400">
-                Enter your email and BTC address for perks and early access to our Beta
+                Join our waitlist for early access - we're launching soon.
               </DialogDescription>
             )}
           </DialogHeader>
@@ -317,7 +300,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                         id="email"
                         type="email"
                         placeholder="your@email.com"
-                        className="h-12 sm:h-14 text-base sm:text-lg"
+                        className="h-12 sm:h-14 text-base sm:text-lg bg-black/20 border-forsat-orange text-white focus:border-forsat-orange hover:border-forsat-orange"
                         {...register('email', { 
                           required: 'Email is required',
                           pattern: {
@@ -343,7 +326,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                           <Input
                             id="bitcoinAddress"
                             placeholder="bc1..."
-                            className="h-12 sm:h-14 text-base sm:text-lg"
+                            className="h-12 sm:h-14 text-base sm:text-lg bg-white/5 border-white/20 text-white"
                             {...register('bitcoinAddress')}
                           />
                         </motion.div>
@@ -362,7 +345,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                         Joining...
                       </div>
                     ) : (
-                      'Join Waitlist'
+                      'Get Early Access'
                     )}
                   </Button>
 
@@ -392,7 +375,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                   className="w-32 mx-auto mb-6"
                 />
 
-                <h3 className="text-3xl font-bold text-white mb-8">Welcome to the Waitlist!</h3>
+                <h3 className="text-3xl font-bold text-white mb-8">You're on the List!</h3>
 
                 <div className="space-y-4">
                   <h4 className="text-2xl font-semibold text-white">What's Next?</h4>
@@ -444,4 +427,4 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
   );
 };
 
-export default WaitlistModal; 
+export default ComingSoonModal; 

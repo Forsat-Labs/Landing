@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
+interface NavbarProps {
+  onWaitlistClick: () => void;
+}
+
 const NavItem = ({ href, children }: { href: string, children: React.ReactNode }) => (
   <a 
     href={href} 
@@ -20,10 +24,15 @@ const NavDropdownItem = ({ href, children }: { href: string, children: React.Rea
   </a>
 );
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<NavbarProps> = ({ onWaitlistClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   // const [resourcesOpen, setResourcesOpen] = useState(false); // Temporarily hidden - Resources dropdown
+
+  const handleWaitlistClick = () => {
+    console.log('Navbar: Waitlist button clicked');
+    onWaitlistClick();
+  };
 
   // Add scroll event listener to detect when page is scrolled
   useEffect(() => {
@@ -89,10 +98,11 @@ const Navbar: React.FC = () => {
               )}
             </div> */}
             
-            <Button asChild className="bg-bitcoin hover:bg-forsat-orange text-white btn-glow btn-hover-slide">
-              <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
-                Launch App
-              </a>
+            <Button 
+              className="bg-bitcoin hover:bg-forsat-orange text-white btn-glow btn-hover-slide"
+              onClick={handleWaitlistClick}
+            >
+              Launch App
             </Button>
           </div>
           
@@ -155,13 +165,13 @@ const Navbar: React.FC = () => {
               </div> */}
               
               <Button 
-                asChild
                 className="bg-bitcoin hover:bg-forsat-orange text-white w-full mt-2"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleWaitlistClick();
+                }}
               >
-                <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
-                  Launch App
-                </a>
+                Launch App
               </Button>
             </div>
           </div>

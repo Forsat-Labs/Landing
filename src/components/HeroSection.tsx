@@ -4,6 +4,10 @@ import { Button } from '@/components/ui/button';
 import Partners from '@/components/Partners';
 import { GlassCard } from '@/components/ui/glassmorphism';
 
+interface HeroSectionProps {
+  onWaitlistClick: () => void;
+}
+
 // Create animated background particle grid component
 const ParticleGrid = () => {
   const particles = Array.from({ length: 30 });
@@ -99,7 +103,7 @@ const CustomCursor = () => {
   );
 };
 
-const HeroSection: React.FC = () => {
+const HeroSection: React.FC<HeroSectionProps> = ({ onWaitlistClick }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [percentChange, setPercentChange] = useState(4.8);
@@ -195,10 +199,11 @@ const HeroSection: React.FC = () => {
               Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards - all secured by Bitcoin mainnet.
             </p>
             <div className="flex flex-wrap gap-4 mt-10">
-              <Button asChild className="bg-bitcoin hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction">
-                <a href="https://forsat.xyz/" target="_blank" rel="noopener noreferrer">
-                  Launch App
-                </a>
+              <Button 
+                className="bg-bitcoin hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction"
+                onClick={onWaitlistClick}
+              >
+                Join Waitlist
               </Button>
               <Button 
                 asChild
