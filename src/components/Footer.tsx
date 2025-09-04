@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Twitter, Globe, ArrowUpRight } from 'lucide-react';
+import { Globe, ArrowUpRight } from 'lucide-react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 
 const Footer: React.FC = () => {
@@ -19,14 +19,18 @@ const Footer: React.FC = () => {
             />
           </div>
           <p className="text-gray-400 max-w-md reveal-left mx-auto" style={{ transitionDelay: '100ms' }}>
-            The first Bitcoin-native prediction market platform. Stake your belief on Bitcoin mainnet with unparalleled security and transparency.
+            The first Bitcoin-native prediction market platform. Trade on Everything. Secured by Bitcoin.
           </p>
           <div className="flex space-x-4 mt-6 reveal-left justify-center" style={{ transitionDelay: '200ms' }}>
-            <a href="https://x.com/forsatofficial" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
-              <Twitter size={20} />
+            <a href="https://x.com/ForsatBid" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <svg width="20" height="20" viewBox="0 0 300 300.251" className="fill-current">
+                <path d="M178.57 127.15 290.27 0h-26.46l-97.03 110.38L89.34 0H0l117.13 166.93L0 300.25h26.46l102.4-116.59 81.8 116.59h89.34M36.01 19.54H76.66l187.13 262.13h-40.66"/>
+              </svg>
             </a>
-            <a href="https://github.com/Forsat-Labs" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
-              <Github size={20} />
+            <a href="https://discord.gg/forsat" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
+              <svg width="24" height="18" viewBox="0 0 126.644 96" className="fill-current">
+                <path d="M81.15,0c-1.2376,2.1973-2.3489,4.4704-3.3591,6.794-9.5975-1.4396-19.3718-1.4396-28.9945,0-.985-2.3236-2.1216-4.5967-3.3591-6.794-9.0166,1.5407-17.8059,4.2431-26.1405,8.0568C2.779,32.5304-1.6914,56.3725.5312,79.8863c9.6732,7.1476,20.5083,12.603,32.0505,16.0884,2.6014-3.4854,4.8998-7.1981,6.8698-11.0623-3.738-1.3891-7.3497-3.1318-10.8098-5.1523.9092-.6567,1.7932-1.3386,2.6519-1.9953,20.281,9.547,43.7696,9.547,64.0758,0,.8587.7072,1.7427,1.3891,2.6519,1.9953-3.4601,2.0457-7.0718,3.7632-10.835,5.1776,1.97,3.8642,4.2683,7.5769,6.8698,11.0623,11.5419-3.4854,22.3769-8.9156,32.0509-16.0631,2.626-27.2771-4.496-50.9172-18.817-71.8548C98.9811,4.2684,90.1918,1.5659,81.1752.0505l-.0252-.0505ZM42.2802,65.4144c-6.2383,0-11.4159-5.6575-11.4159-12.6535s4.9755-12.6788,11.3907-12.6788,11.5169,5.708,11.4159,12.6788c-.101,6.9708-5.026,12.6535-11.3907,12.6535ZM84.3576,65.4144c-6.2637,0-11.3907-5.6575-11.3907-12.6535s4.9755-12.6788,11.3907-12.6788,11.4917,5.708,11.3906,12.6788c-.101,6.9708-5.026,12.6535-11.3906,12.6535Z"/>
+              </svg>
             </a>
           </div>
                   </div>

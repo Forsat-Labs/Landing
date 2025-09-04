@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bitcoin, Check, Sparkles, Loader2 } from 'lucide-react';
+import { Bitcoin, Check, Sparkles, Loader2, Star, ExternalLink } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface WaitlistModalProps {
@@ -255,8 +255,8 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
       delay: 0.2
     },
     {
-      title: 'Exclusive airdrop raffle',
-      description: 'Chance to win FOR tokens',
+      title: 'Exclusive airdrop',
+      description: 'Chance to win $FOR tokens',
       icon: Bitcoin,
       delay: 0.4
     },
@@ -265,6 +265,12 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
       description: 'Special recognition in our community',
       icon: Check,
       delay: 0.6
+    },
+    {
+      title: 'Season points & streaks',
+      description: 'Earn points for on-chain and social quests from Day 1.',
+      icon: Star,
+      delay: 0.8
     }
   ];
 
@@ -416,8 +422,8 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                           <Bitcoin className="w-5 h-5 text-white" />
                         </div>
                         <div className="text-left">
-                          <h4 className="text-lg font-semibold text-white">Exclusive airdrop raffle</h4>
-                          <p className="text-gray-400">Chance to win FOR tokens</p>
+                          <h4 className="text-lg font-semibold text-white">Exclusive airdrop</h4>
+                          <p className="text-gray-400">Chance to win $FOR tokens</p>
                         </div>
                       </div>
                     </div>
@@ -432,6 +438,37 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                           <p className="text-gray-400">Special recognition in our community</p>
                         </div>
                       </div>
+                    </div>
+
+                    <div className="bg-white/5 rounded-lg p-4">
+                      <div className="flex items-start space-x-4">
+                        <div className="mt-1">
+                          <Star className="w-5 h-5 text-white" />
+                        </div>
+                        <div className="text-left">
+                          <h4 className="text-lg font-semibold text-white">Season points & streaks</h4>
+                          <p className="text-gray-400">Earn points for on-chain and social quests from Day 1.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8 space-y-4">
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      <Button
+                        onClick={() => window.open('https://discord.gg/forsat', '_blank')}
+                        className="flex-1 bg-[#5865F2] hover:bg-[#4752C4] text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2"
+                      >
+                        Join our Discord
+                        <ExternalLink className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        onClick={() => window.open('https://x.com/ForsatBid', '_blank')}
+                        className="flex-1 bg-black hover:bg-gray-800 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2 border border-white/20"
+                      >
+                        Follow us on X
+                        <ExternalLink className="w-4 h-4" />
+                      </Button>
                     </div>
                   </div>
                 </div>
