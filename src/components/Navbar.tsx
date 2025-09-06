@@ -6,10 +6,37 @@ interface NavbarProps {
   onWaitlistClick: () => void;
 }
 
+// Smooth scroll handler function
+const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  e.preventDefault();
+  
+  // Extract the target id from href (remove the #)
+  const targetId = href.replace('#', '');
+  const targetElement = document.getElementById(targetId);
+  
+  if (targetElement) {
+    // Get the navbar height dynamically
+    const navbar = document.querySelector('nav');
+    const navbarHeight = navbar ? navbar.offsetHeight : 80;
+    
+    // Calculate the position to scroll to
+    // We want to position the element just below the navbar
+    const elementRect = targetElement.getBoundingClientRect();
+    const currentScrollY = window.pageYOffset;
+    const targetScrollY = currentScrollY + elementRect.top - navbarHeight - 20; // 20px extra padding
+    
+    window.scrollTo({
+      top: targetScrollY,
+      behavior: 'smooth'
+    });
+  }
+};
+
 const NavItem = ({ href, children }: { href: string, children: React.ReactNode }) => (
   <a 
-    href={href} 
-    className="relative text-gray-300 hover:text-white transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-forsat-orange-light after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
+    href={href}
+    onClick={(e) => handleSmoothScroll(e, href)}
+    className="relative text-gray-300 hover:text-white transition-colors after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-forsat-orange-light after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left cursor-pointer"
   >
     {children}
   </a>
@@ -124,22 +151,31 @@ const Navbar: React.FC<NavbarProps> = ({ onWaitlistClick }) => {
             <div className="flex flex-col space-y-4">
               <a 
                 href="#features" 
-                className="text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10"
-                onClick={() => setIsMenuOpen(false)}
+                className="text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10 cursor-pointer"
+                onClick={(e) => {
+                  handleSmoothScroll(e, '#features');
+                  setIsMenuOpen(false);
+                }}
               >
                 Features
               </a>
               <a 
                 href="#how-it-works" 
-                className="text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10"
-                onClick={() => setIsMenuOpen(false)}
+                className="text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10 cursor-pointer"
+                onClick={(e) => {
+                  handleSmoothScroll(e, '#how-it-works');
+                  setIsMenuOpen(false);
+                }}
               >
                 How It Works
               </a>
               <a 
                 href="#technical" 
-                className="text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10"
-                onClick={() => setIsMenuOpen(false)}
+                className="text-gray-300 hover:text-white transition-colors py-2 border-b border-white/10 cursor-pointer"
+                onClick={(e) => {
+                  handleSmoothScroll(e, '#technical');
+                  setIsMenuOpen(false);
+                }}
               >
                 Technical
               </a>
