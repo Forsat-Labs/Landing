@@ -192,7 +192,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onWaitlistClick }) => {
             style={{ transform: `translateY(${scrollY * -0.03}px)` }}
           >
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-8 premium-text">
-              <span className="block text-glow">Trade on Everything.</span>
+              <span className="block text-glow">Trade on Anything</span>
               <span className="gradient-text">Secured by Bitcoin</span>
             </h1>
             <p className="max-w-3xl mt-6 text-xl leading-relaxed text-gray-300">

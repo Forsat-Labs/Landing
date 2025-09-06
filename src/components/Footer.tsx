@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
             />
           </div>
           <p className="text-gray-400 max-w-md reveal-left mx-auto" style={{ transitionDelay: '100ms' }}>
-            The first Bitcoin-native prediction market platform. Trade on Everything. Secured by Bitcoin.
+            The first Bitcoin-native prediction market platform. Trade on Anything. Secured by Bitcoin
           </p>
           <div className="flex space-x-4 mt-6 reveal-left justify-center" style={{ transitionDelay: '200ms' }}>
             <a href="https://x.com/ForsatBid" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-bitcoin transition-colors duration-300 hover:scale-110 transform">
