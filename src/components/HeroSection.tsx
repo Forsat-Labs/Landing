@@ -192,7 +192,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onWaitlistClick }) => {
             style={{ transform: `translateY(${scrollY * -0.03}px)` }}
           >
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl mb-8 premium-text">
-              <span className="block text-glow">Trade on Everything.</span>
+              <span className="block text-glow">Trade on Anything</span>
               <span className="gradient-text">Secured by Bitcoin</span>
             </h1>
             <p className="max-w-3xl mt-6 text-xl leading-relaxed text-gray-300">
@@ -206,13 +206,30 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onWaitlistClick }) => {
                 Join Waitlist
               </Button>
               <Button 
-                asChild
                 variant="outline" 
                 className="border-white/20 bg-white/5 hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg hover:border-forsat-orange btn-hover-slide micro-interaction"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const targetElement = document.getElementById('features');
+                  if (targetElement) {
+                    // Get the navbar height dynamically
+                    const navbar = document.querySelector('nav');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                    
+                    // Calculate the position to scroll to
+                    // We want to position the element just below the navbar
+                    const elementRect = targetElement.getBoundingClientRect();
+                    const currentScrollY = window.pageYOffset;
+                    const targetScrollY = currentScrollY + elementRect.top - navbarHeight - 20; // 20px extra padding
+                    
+                    window.scrollTo({
+                      top: targetScrollY,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
               >
-                <a href="#features">
-                  Learn More
-                </a>
+                Learn More
               </Button>
             </div>
             

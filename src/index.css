@@ -131,10 +131,7 @@
   }
 }
 
-/* Smooth scroll animation */
-html {
-  scroll-behavior: smooth;
-}
+/* Smooth scroll animation handled by Lenis */
 
 /* Reveal animations */
 .reveal-right {
