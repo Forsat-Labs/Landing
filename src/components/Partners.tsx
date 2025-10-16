@@ -14,12 +14,6 @@ const partnerData = [
     name: "DotSwap", 
     logo: "/partners/dotswap_logo_text_168_34.svg",
     description: "Decentralized exchange"
-  },
-  {
-    id: 3,
-    name: "Xverse",
-    logo: "/partners/xverse_logo_whitecolor.svg", 
-    description: "Bitcoin wallet"
   }
 ];
 
@@ -47,7 +41,7 @@ const Partners: React.FC = () => {
       </div>
 
       {/* Desktop and Tablet Layout */}
-      <div className="hidden sm:grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <div className="hidden sm:flex justify-center gap-6 md:gap-8">
         {partnerData.map((partner, index) => (
           <div
             key={partner.id}
