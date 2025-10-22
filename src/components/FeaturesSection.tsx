@@ -6,7 +6,7 @@ import { Reveal3D } from '@/components/ScrollAnimations';
 const features = [
   {
     title: "Bitcoin Mainnet Exclusivity",
-    description: "Built exclusively on Bitcoin mainnet using Runes for all assets, ensuring unparalleled security and verifiability without reliance on Layer 2 solutions or bridges.",
+    description: "Forsat is built to the Bitcoin standard. All market outcomes are secured by the immutability of the Bitcoin ledger, providing unparalleled verifiability and trust for every trade.",
     icon: Bitcoin,
     color: "text-orange-500",
     gradient: "from-orange-500/20 to-orange-500/5"
@@ -20,7 +20,7 @@ const features = [
   },
   {
     title: "Permissionless Market Creation",
-    description: "Create prediction markets on any outcome by paying a small $FOR fee. Markets are reviewed by AI and become tradable immediately after creation.",
+    description: "Create prediction markets on any outcome by paying a small $BTC fee. Markets are reviewed by AI and become tradable immediately after creation.",
     icon: UserPlus,
     color: "text-green-500",
     gradient: "from-green-500/20 to-green-500/5"

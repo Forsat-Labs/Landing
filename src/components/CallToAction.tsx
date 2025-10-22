@@ -62,16 +62,16 @@ const CallToAction: React.FC<CallToActionProps> = ({ onWaitlistClick }) => {
           <div className="w-24 h-1 mx-auto bg-gradient-to-r from-forsat-pink to-forsat-orange rounded-full mb-6"></div>
           
           <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto">
-            Join the waitlist for early access to Forsat and be among the first to create and trade on the first Bitcoin-native prediction market.
+            The $FOR Rewards Campaign is now live. Join the vanguard, complete missions, and earn points to secure your allocation in the future of verifiable truth
           </p>
         </div>
         
         <div className="max-w-md mx-auto reveal-up" style={{ transitionDelay: '200ms' }}>
           <Button 
-            onClick={onWaitlistClick}
+            onClick={() => window.open('https://forsat.bid/rewards', '_blank')}
             className="px-16 bg-forsat-orange hover:bg-forsat-orange/90 text-white font-semibold btn-hover-slide text-lg py-8"
           >
-            Join Waitlist
+            Launch App
           </Button>
         </div>
         

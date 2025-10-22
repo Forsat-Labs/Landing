@@ -196,14 +196,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onWaitlistClick }) => {
               <span className="gradient-text">Secured by Bitcoin</span>
             </h1>
             <p className="max-w-3xl mt-6 text-xl leading-relaxed text-gray-300">
-              Forsat is the first fully decentralized prediction market built natively on Bitcoin. Create markets, trade outcomes, and earn rewards - all secured by Bitcoin mainnet.
+              Forsat is unlocking Bitcoin's $1T+ dormant capital to power the market for every verifiable event. A decentralized truth engine for the multi-trillion dollar prediction industry, creating markets on geopolitics, economic outcomes, and cultural trends alongside next-generation assets like AI and RWAs.
             </p>
             <div className="flex flex-wrap gap-4 mt-10">
               <Button 
                 className="bg-bitcoin hover:bg-forsat-orange text-white font-semibold px-8 py-6 text-lg btn-glow btn-hover-slide shimmering-border micro-interaction"
-                onClick={onWaitlistClick}
+                onClick={() => window.open('https://forsat.bid/rewards', '_blank')}
               >
-                Join Waitlist
+                Launch App
               </Button>
               <Button 
                 variant="outline" 

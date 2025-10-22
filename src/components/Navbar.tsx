@@ -127,7 +127,7 @@ const Navbar: React.FC<NavbarProps> = ({ onWaitlistClick }) => {
             
             <Button 
               className="bg-bitcoin hover:bg-forsat-orange text-white btn-glow btn-hover-slide"
-              onClick={handleWaitlistClick}
+              onClick={() => window.open('https://forsat.bid/rewards', '_blank')}
             >
               Launch App
             </Button>
@@ -204,7 +204,7 @@ const Navbar: React.FC<NavbarProps> = ({ onWaitlistClick }) => {
                 className="bg-bitcoin hover:bg-forsat-orange text-white w-full mt-2"
                 onClick={() => {
                   setIsMenuOpen(false);
-                  handleWaitlistClick();
+                  window.open('https://forsat.bid/rewards', '_blank');
                 }}
               >
                 Launch App

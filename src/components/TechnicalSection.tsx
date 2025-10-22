@@ -23,7 +23,7 @@ const TechnicalSection: React.FC = () => {
             </CardHeader>
             <CardContent>
               <CardDescription className="text-gray-400">
-                Uses Runes for YES/NO and $FOR tokens, with on-chain transactions for all operations. PSBTs execute CLOB and LMSR transactions ensuring security, efficiency, and scalability.
+                Utilizes advanced protocols for YES/NO and $FOR tokens, with seamless on-chain transactions for all operations. PSBTs execute CLOB and LMSR transactions, delivering superior security, efficiency, and scalability.
               </CardDescription>
             </CardContent>
           </Card>

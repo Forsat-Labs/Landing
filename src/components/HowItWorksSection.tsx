@@ -4,7 +4,7 @@ import { BarChart3, Database, LineChart, ListOrdered } from 'lucide-react';
 const steps = [
   {
     title: "Market Creation",
-    description: "Users create markets by paying a small $FOR fee via a Bitcoin transaction. Markets open for off-chain trading immediately.",
+    description: "Users create markets by paying a small $BTC fee via a Bitcoin transaction. Markets open for off-chain trading immediately.",
     icon: ListOrdered,
     color: "bg-blue-500 text-white"
   },
